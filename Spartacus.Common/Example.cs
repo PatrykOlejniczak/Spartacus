@@ -37,7 +37,9 @@ namespace Spartacus.Common
 
         public override string ToString()
         {
-            return string.Join(",", Variables.Select(e => e.Value)) + "," + ExampleType;
+            //TODO Fix
+            var shortExampleType = ExampleType == ExampleType.Feasible ? "0" : "1";
+            return string.Join(",", Variables.Select(e => e.Value)) + "," + shortExampleType;
         }
     }
 }

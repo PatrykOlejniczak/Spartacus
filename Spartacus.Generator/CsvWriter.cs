@@ -24,7 +24,7 @@ namespace Spartacus.Generator
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
-                fileName = DateTime.Now.ToString("yyyy-dd-MM-HH-mm-ss") + ".csv";
+                fileName = DateTime.Now.ToString("yyyy-dd-MM-HH-mm-ss") + ".xlsx";
             }
 
             var csv = examples.Select(example => example.ToString());
