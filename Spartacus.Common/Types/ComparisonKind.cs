@@ -1,4 +1,4 @@
-﻿namespace Spartacus.Common
+﻿namespace Spartacus.Common.Types
 {
     public enum ComparisonKind
     {

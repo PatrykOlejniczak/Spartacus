@@ -1,4 +1,5 @@
 ﻿using System;
+using Spartacus.Common.Types;
 
 namespace Spartacus.Common.Extensions
 {

@@ -1,4 +1,6 @@
-﻿namespace Spartacus.Common.Extensions
+﻿using Spartacus.Common.Types;
+
+namespace Spartacus.Common.Extensions
 {
     public static class ExampleTypeExtenions
     {

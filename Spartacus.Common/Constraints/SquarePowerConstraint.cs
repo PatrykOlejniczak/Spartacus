@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Spartacus.Common.Extensions;
+using Spartacus.Common.Types;
 
 namespace Spartacus.Common.Constraints
 {
