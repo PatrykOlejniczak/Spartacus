@@ -9,8 +9,11 @@ namespace Spartacus.Benchmarks
     {
         public string Name { get; }
 
-        public IList<Variable> Variables { get; } = new List<Variable>();
-        public IList<LinearConstraint> Constraints { get; } = new List<LinearConstraint>();
+        protected List<VariableSchema> SafeVariableSchemas { get; } = new List<VariableSchema>();
+        protected List<BaseConstraint> SafeConstraints { get; } = new List<BaseConstraint>();
+
+        public IReadOnlyList<VariableSchema> VariableSchemas => SafeVariableSchemas.AsReadOnly();
+        public IReadOnlyList<BaseConstraint> Constraints => SafeConstraints.AsReadOnly();
 
         protected Benchamark()
         {

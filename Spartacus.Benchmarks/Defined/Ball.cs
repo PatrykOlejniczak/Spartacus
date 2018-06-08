@@ -1,4 +1,4 @@
-﻿namespace Spartacus.Benchmarks.Benchmarks
+﻿namespace Spartacus.Benchmarks.Defined
 {
     public class Ball : Benchamark
     {
