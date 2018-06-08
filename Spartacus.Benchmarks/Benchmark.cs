@@ -5,7 +5,7 @@ using Spartacus.Common.Constraints;
 
 namespace Spartacus.Benchmarks
 {
-    public class Benchamark
+    public class Benchmark
     {
         public string Name { get; }
 
@@ -15,12 +15,12 @@ namespace Spartacus.Benchmarks
         public IReadOnlyList<VariableSchema> VariableSchemas => SafeVariableSchemas.AsReadOnly();
         public IReadOnlyList<BaseConstraint> Constraints => SafeConstraints.AsReadOnly();
 
-        protected Benchamark()
+        protected Benchmark()
         {
             Name = this.GetType().Name;
         }
 
-        protected Benchamark(string name)
+        protected Benchmark(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
             {

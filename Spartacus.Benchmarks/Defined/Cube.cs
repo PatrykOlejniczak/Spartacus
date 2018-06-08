@@ -1,6 +1,6 @@
 ﻿namespace Spartacus.Benchmarks.Defined
 {
-    public class Cube : Benchamark
+    public class Cube : Benchmark
     {
         
     }

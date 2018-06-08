@@ -3,7 +3,7 @@ using Spartacus.Common.Types;
 
 namespace Spartacus.Benchmarks.Defined
 {
-    public class Circle : Cartesian2DBenchamark
+    public class Circle : Cartesian2D
     {
         public Circle()
         {

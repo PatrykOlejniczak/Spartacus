@@ -9,12 +9,7 @@ namespace Spartacus.Common
 
         public Variable(VariableSchema schema, double value)
         {
-            if (schema == null)
-            {
-                throw new ArgumentNullException(nameof(schema));
-            }
-
-            Schema = schema;
+            Schema = schema ?? throw new ArgumentNullException(nameof(schema));
             Value = value;
         }
     }

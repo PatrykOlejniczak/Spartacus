@@ -8,9 +8,9 @@ namespace Spartacus.Generator
 {
     public class Engine
     {
-        public IList<VariableSchema> VariableSchemas { get; }
+        public List<VariableSchema> VariableSchemas { get; }
 
-        public Engine(IList<VariableSchema> variableSchemas)
+        public Engine(List<VariableSchema> variableSchemas)
         {
             if (variableSchemas == null || variableSchemas.Count == 0)
             {
@@ -20,7 +20,7 @@ namespace Spartacus.Generator
             VariableSchemas = variableSchemas;
         }
 
-        public IList<Example> Generate(int examplesCount)
+        public List<Example> Generate(int examplesCount)
         {
             var examples = new List<Example>();
 
@@ -41,7 +41,7 @@ namespace Spartacus.Generator
             return examples;
         }
 
-        public IList<Example> Generate(int examplesCount, IList<BaseConstraint> constraints)
+        public List<Example> Generate(int examplesCount, List<BaseConstraint> constraints)
         {
             var examples = Generate(examplesCount);
 

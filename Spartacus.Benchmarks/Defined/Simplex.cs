@@ -1,6 +1,6 @@
 ﻿namespace Spartacus.Benchmarks.Defined
 {
-    public class Simplex : Benchamark
+    public class Simplex : Benchmark
     {
         
     }

@@ -3,7 +3,7 @@ using Spartacus.Common.Types;
 
 namespace Spartacus.Benchmarks.Defined
 {
-    public class Rectangle : Cartesian2DBenchamark
+    public class Rectangle : Cartesian2D
     {
         public Rectangle()
         {
