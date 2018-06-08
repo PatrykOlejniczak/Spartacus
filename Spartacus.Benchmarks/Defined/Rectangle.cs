@@ -18,13 +18,13 @@ namespace Spartacus.Benchmarks.Defined
             SafeConstraints.Add(rigthContraint);
 
             var bottomConstraint = new LinearConstraint(-40, ComparisonKind.GreaterOrEqual);
-            bottomConstraint.Weights.Add(SafeVariableSchemas[0], 1.0);
-            bottomConstraint.Weights.Add(SafeVariableSchemas[1], 0.0);
+            bottomConstraint.Weights.Add(SafeVariableSchemas[0], 0.0);
+            bottomConstraint.Weights.Add(SafeVariableSchemas[1], 1.0);
             SafeConstraints.Add(bottomConstraint);
 
             var topConstraint = new LinearConstraint(40, ComparisonKind.LessOrEqual);
-            topConstraint.Weights.Add(SafeVariableSchemas[0], 1.0);
-            topConstraint.Weights.Add(SafeVariableSchemas[1], 0.0);
+            topConstraint.Weights.Add(SafeVariableSchemas[0], 0.0);
+            topConstraint.Weights.Add(SafeVariableSchemas[1], 1.0);
             SafeConstraints.Add(topConstraint);
         }
 
@@ -42,13 +42,13 @@ namespace Spartacus.Benchmarks.Defined
             SafeConstraints.Add(rigthContraint);
 
             var bottomConstraint = new LinearConstraint((-1) * height / 2, ComparisonKind.GreaterOrEqual);
-            bottomConstraint.Weights.Add(SafeVariableSchemas[0], 1.0);
-            bottomConstraint.Weights.Add(SafeVariableSchemas[1], 0.0);
+            bottomConstraint.Weights.Add(SafeVariableSchemas[0], 0.0);
+            bottomConstraint.Weights.Add(SafeVariableSchemas[1], 1.0);
             SafeConstraints.Add(bottomConstraint);
 
             var topConstraint = new LinearConstraint(height / 2, ComparisonKind.LessOrEqual);
-            topConstraint.Weights.Add(SafeVariableSchemas[0], 1.0);
-            topConstraint.Weights.Add(SafeVariableSchemas[1], 0.0);
+            topConstraint.Weights.Add(SafeVariableSchemas[0], 0.0);
+            topConstraint.Weights.Add(SafeVariableSchemas[1], 1.0);
             SafeConstraints.Add(topConstraint);
         }
     }

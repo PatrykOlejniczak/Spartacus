@@ -5,7 +5,6 @@ using System.Linq;
 using System.Reflection;
 using CommandLine;
 using Spartacus.Benchmarks;
-using Spartacus.Benchmarks.Defined;
 using Spartacus.Generator;
 
 namespace Spartacus
@@ -20,8 +19,6 @@ namespace Spartacus
 
         private static void Run(Settings opts)
         {
-            var rectangle = new Rectangle();
-
             var benchmarks = new List<Benchmark>();
             foreach (Type type in Assembly.GetAssembly(typeof(Benchmark)).GetTypes()
                                           .Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(Benchmark))))
@@ -39,7 +36,7 @@ namespace Spartacus
                 dataToSave.Add(new SheetToSave()
                 {
                     SheetName = opts.Sheets[i],
-                    Examples = engine.Generate(opts.Points, rectangle.Constraints.ToList())
+                    Examples = engine.Generate(opts.Points, benchmark.Constraints.ToList())
                 });
             }
 
