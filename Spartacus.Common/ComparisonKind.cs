@@ -1,6 +1,6 @@
 ﻿namespace Spartacus.Common
 {
-    public enum Comparison
+    public enum ComparisonKind
     {
         Less,
         LessOrEqual,

@@ -40,7 +40,7 @@ namespace Spartacus.Generator
             return examples;
         }
 
-        public IList<Example> Generate(int examplesCount, IList<IConstraint> constraints)
+        public IList<Example> Generate(int examplesCount, IList<BaseConstraint> constraints)
         {
             var examples = Generate(examplesCount);
 

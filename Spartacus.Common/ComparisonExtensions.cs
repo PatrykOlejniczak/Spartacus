@@ -4,24 +4,24 @@ namespace Spartacus.Common
 {
     public static class ComparisonExtensions
     {
-        public static bool Verify(this Comparison comparison, double leftPart, double rightPart)
+        public static bool Verify(this ComparisonKind comparisonKind, double leftPart, double rightPart)
         {
-            switch (comparison)
+            switch (comparisonKind)
             {
-                case Comparison.Less:
+                case ComparisonKind.Less:
                     return leftPart < rightPart;
-                case Comparison.LessOrEqual:
+                case ComparisonKind.LessOrEqual:
                     return leftPart <= rightPart;
-                case Comparison.Equal:
+                case ComparisonKind.Equal:
                     return Math.Abs(leftPart - rightPart) < Double.Epsilon;
-                case Comparison.GreaterOrEqual:
+                case ComparisonKind.GreaterOrEqual:
                     return leftPart >= rightPart;
-                case Comparison.Greater:
+                case ComparisonKind.Greater:
                     return leftPart > rightPart;
-                case Comparison.NotEqual:
+                case ComparisonKind.NotEqual:
                     return Math.Abs(leftPart - rightPart) > Double.Epsilon;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(comparison), comparison, null);
+                    throw new ArgumentOutOfRangeException(nameof(comparisonKind), comparisonKind, null);
             }
         }
     }

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EPPlus" Version="4.5.2.1" />
     <PackageReference Include="MersenneTwister" Version="1.0.5" />
   </ItemGroup>
 

@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spartacus.Benchmarks", "Spa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spartacus.Common", "Spartacus.Common\Spartacus.Common.csproj", "{CFF15CBA-E634-49C6-AB8C-F3D8C44EED96}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spartacus.ConsoleViewer", "Spartacus.ConsoleViewer\Spartacus.ConsoleViewer.csproj", "{CE6D0787-406F-4939-8E6F-F1821FA70D5C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spartacus", "Spartacus\Spartacus.csproj", "{60AB2C0C-DBFB-4E8F-B211-10B76764C2DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{CFF15CBA-E634-49C6-AB8C-F3D8C44EED96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFF15CBA-E634-49C6-AB8C-F3D8C44EED96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFF15CBA-E634-49C6-AB8C-F3D8C44EED96}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CE6D0787-406F-4939-8E6F-F1821FA70D5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CE6D0787-406F-4939-8E6F-F1821FA70D5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CE6D0787-406F-4939-8E6F-F1821FA70D5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CE6D0787-406F-4939-8E6F-F1821FA70D5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60AB2C0C-DBFB-4E8F-B211-10B76764C2DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60AB2C0C-DBFB-4E8F-B211-10B76764C2DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60AB2C0C-DBFB-4E8F-B211-10B76764C2DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60AB2C0C-DBFB-4E8F-B211-10B76764C2DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,7 +9,7 @@ namespace Spartacus.Benchmarks
         public string Name { get; }
 
         public IList<Variable> Variables { get; } = new List<Variable>();
-        public IList<Constraint> Constraints { get; } = new List<Constraint>();
+        public IList<LinearConstraint> Constraints { get; } = new List<LinearConstraint>();
 
         protected Benchamark()
         {

@@ -21,7 +21,7 @@ namespace Spartacus.Common
             Variables = new ReadOnlyCollection<Variable>(variables);
         }
 
-        public void Validate(IList<IConstraint> constraints)
+        public void Validate(IList<BaseConstraint> constraints)
         {
             ExampleType = ExampleType.Feasible;
 
