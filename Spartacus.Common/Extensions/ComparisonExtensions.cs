@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Spartacus.Common
+namespace Spartacus.Common.Extensions
 {
     public static class ComparisonExtensions
     {

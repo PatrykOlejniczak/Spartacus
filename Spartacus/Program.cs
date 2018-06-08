@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CommandLine;
 using Spartacus.Common;
+using Spartacus.Common.Constraints;
 using Spartacus.Generator;
 
 namespace Spartacus

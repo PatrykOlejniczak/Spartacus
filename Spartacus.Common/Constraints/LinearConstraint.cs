@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Spartacus.Common.Extensions;
 
-namespace Spartacus.Common
+namespace Spartacus.Common.Constraints
 {
     public class LinearConstraint : BaseConstraint
     {

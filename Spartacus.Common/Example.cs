@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Spartacus.Common.Constraints;
+using Spartacus.Common.Extensions;
 
 namespace Spartacus.Common
 {
@@ -36,10 +38,8 @@ namespace Spartacus.Common
         }
 
         public override string ToString()
-        {
-            //TODO Fix
-            var shortExampleType = ExampleType == ExampleType.Feasible ? "0" : "1";
-            return string.Join(",", Variables.Select(e => e.Value)) + "," + shortExampleType;
+        {  
+            return string.Join(",", Variables.Select(e => e.Value)) + "," + ExampleType.Check(ExampleType.Feasible);
         }
     }
 }

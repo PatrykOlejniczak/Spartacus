@@ -7,7 +7,7 @@ using Spartacus.Common;
 
 namespace Spartacus.Generator
 {
-    public class CsvWriter : IExampleStorage
+    public class CsvWriter
     {
         private readonly string directoryPath;
 
@@ -19,18 +19,6 @@ namespace Spartacus.Generator
             }
 
             this.directoryPath = directoryPath;
-        }
-
-        public void Save(IList<Example> examples, string fileName = "")
-        {
-            if (string.IsNullOrWhiteSpace(fileName))
-            {
-                fileName = DateTime.Now.ToString("yyyy-dd-MM-HH-mm-ss") + ".xlsx";
-            }
-
-            var csv = examples.Select(example => example.ToString());
-
-            File.WriteAllText(Path.Combine(directoryPath, fileName), string.Join("\n", csv));
         }
 
         public void Save(IList<Example> learn, IList<Example> learnValidation, IList<Example> validation, string fileName = "")

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Spartacus.Common;
+using Spartacus.Common.Constraints;
 
 namespace Spartacus.Benchmarks
 {

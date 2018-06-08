@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Spartacus.Common
+namespace Spartacus.Common.Constraints
 {
     public abstract class BaseConstraint
     {

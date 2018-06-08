@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MersenneTwister;
 using Spartacus.Common;
+using Spartacus.Common.Constraints;
 
 namespace Spartacus.Generator
 {
