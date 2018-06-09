@@ -5,11 +5,13 @@ Output sets in the form of spreadsheets can be used with machine learning algori
 
 ## Sample output
 The sets are in the form of a list of points in the N dimensional space (X1-XN) together with a column representing the result (Y) that defines whether the point meets the restrictions.
+
 | X1 | X2 | X3 | Y  |
 |:--:|:--:|:--:|:--:|
 | 10 | 15 | 12  | 0 |
 | 0  | 8  | 6  | 1 |
 | 2  | -8 | 12 | 0 |
+
 Table: Sample output data
 
 ## Available predefined benchmarks:
