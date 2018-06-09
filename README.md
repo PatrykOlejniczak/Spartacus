@@ -39,7 +39,7 @@ Invoke Spartacus to generate double circle (2d) datasets, output file doublecirc
 `dotnet Spartacus.dll -b doublecircle -p 5000 --output doublecircle_5k --sheets learn_dataset learn_validation_dataset validation_dataset`
 
 ![DoubleCircleVisualization](/docs/images/sample_visualization.JPG)
-Image: Visualization
+Image: Visualization created dataset
 
 ## Contribution
 Feel free to make pull request and add something or just create issue with question / suggestion for improvement / report bug.
