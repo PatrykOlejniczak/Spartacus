@@ -1,4 +1,5 @@
-﻿using Spartacus.Common.Constraints;
+﻿using Spartacus.Common;
+using Spartacus.Common.Constraints;
 using Spartacus.Common.Types;
 
 namespace Spartacus.Benchmarks.Defined
@@ -8,8 +9,8 @@ namespace Spartacus.Benchmarks.Defined
         public Circle()
         {
             var constraint = new SquarePowerConstraint(4000, ComparisonKind.LessOrEqual);
-            constraint.Weights.Add(SafeVariableSchemas[0], 1.0);
-            constraint.Weights.Add(SafeVariableSchemas[1], 1.0);
+            constraint.Modificators.Add(SafeVariableSchemas[0], new Modificator());
+            constraint.Modificators.Add(SafeVariableSchemas[1], new Modificator());
 
             SafeConstraints.Add(constraint);
         }
@@ -18,8 +19,8 @@ namespace Spartacus.Benchmarks.Defined
             : base(min, max)
         {
             var constraint = new SquarePowerConstraint(diameter, ComparisonKind.LessOrEqual);
-            constraint.Weights.Add(SafeVariableSchemas[0], 1.0);
-            constraint.Weights.Add(SafeVariableSchemas[1], 1.0);
+            constraint.Modificators.Add(SafeVariableSchemas[0], new Modificator());
+            constraint.Modificators.Add(SafeVariableSchemas[1], new Modificator());
 
             SafeConstraints.Add(constraint);
         }

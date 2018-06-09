@@ -26,16 +26,26 @@ namespace Spartacus.Common
 
         public void Validate(IList<BaseConstraint> constraints)
         {
-            ExampleType = ExampleType.Feasible;
+            ExampleType = ExampleType.Infeasible;
 
-            foreach (var constraint in constraints)
+            var groups = constraints.GroupBy(constraint => constraint.GroupId);
+
+            foreach (var group in groups)
             {
-                if (!constraint.Verify(Variables.ToList()))
+                foreach (var constraint in group)
                 {
-                    ExampleType = ExampleType.Infeasible;
-                    break;
+                    if (!constraint.Verify(Variables.ToList()))
+                    {
+                        ExampleType = ExampleType.Infeasible;
+                        break;
+                    }
+                    ExampleType = ExampleType.Feasible;
                 }
+
+                if (ExampleType == ExampleType.Feasible)
+                    break;
             }
+
         }
 
         public override string ToString()

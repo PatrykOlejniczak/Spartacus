@@ -11,19 +11,19 @@ namespace Spartacus.Common.Constraints
             : base(constant, comparisonKind)
         { }
 
-        public LinearConstraint(double constant, ComparisonKind comparisonKind, IDictionary<VariableSchema, double> weights)
-            : base(constant, comparisonKind, weights)
+        public LinearConstraint(double constant, ComparisonKind comparisonKind, int groupId)
+            : base(constant, comparisonKind, groupId)
         { }
 
         public override bool Verify(IList<Variable> variables)
         {
             var leftSide = 0.0;
 
-            foreach (var weight in Weights)
+            foreach (var modificator in Modificators)
             {
-                var value = variables.Single(v => v.Schema.Symbol.Equals(weight.Key.Symbol)).Value;
+                var value = variables.Single(v => v.Schema.Symbol.Equals(modificator.Key.Symbol)).Value;
 
-                leftSide += value * weight.Value;
+                leftSide += (value * modificator.Value.Weight) + modificator.Value.Shift;
             }
 
             return ComparisonKind.Verify(leftSide, Constant);
