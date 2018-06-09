@@ -1,7 +1,7 @@
 ---
 name: Question
-about: Question template.
+about: Feel free to ask a question
 
 ---
 
-Feel free to ask a question.
+
