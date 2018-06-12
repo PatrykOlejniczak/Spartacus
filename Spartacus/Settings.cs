@@ -22,10 +22,18 @@ namespace Spartacus
         [Option("sheets", Required = false, HelpText = "List with names of sheets in each result file. Default is benchmark name.")]
         public List<string> Sheets { get; }
 
-        public Settings(string benchmark, int points, string outputPath, IEnumerable<string> output, IEnumerable<string> sheets)
+        [Option('l', "linearextension", Required = false, HelpText = "Sets whether to generate linear dependencies between variables.")]
+        public bool LinearExtension { get; }
+
+        [Option('q', "quadraticextension", Required = false, HelpText = "Sets whether to generate quadratic dependencies between variables.")]
+        public bool QuadraticExtension { get; }
+
+        public Settings(string benchmark, int points, string outputPath, IEnumerable<string> output, IEnumerable<string> sheets, bool linearExtension, bool quadraticExtension)
         {
             Benchmark = benchmark;
             Points = points;
+            LinearExtension = linearExtension;
+            QuadraticExtension = quadraticExtension;
 
             OutputPath = outputPath ?? Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             Output = output != null ? output.ToList() : new List<string>() { Benchmark };

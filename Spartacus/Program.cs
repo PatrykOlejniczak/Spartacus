@@ -36,7 +36,7 @@ namespace Spartacus
                 dataToSave.Add(new SheetToSave()
                 {
                     SheetName = opts.Sheets[i],
-                    Examples = engine.Generate(opts.Points, benchmark.Constraints.ToList())
+                    Examples = engine.Generate(opts.Points, benchmark.Constraints.ToList(), opts.LinearExtension, opts.QuadraticExtension)
                 });
             }
 

@@ -11,7 +11,7 @@ namespace Spartacus.Common
     public class Example
     {
         public ExampleType ExampleType { get; private set; }
-        public IReadOnlyCollection<Variable> Variables { get; }
+        public List<Variable> Variables { get; }
 
         public Example(IList<Variable> variables)
         {
@@ -21,7 +21,7 @@ namespace Spartacus.Common
             }
 
             ExampleType = ExampleType.Undefined;
-            Variables = new ReadOnlyCollection<Variable>(variables);
+            Variables = new List<Variable>(variables);
         }
 
         public void Validate(IList<BaseConstraint> constraints)

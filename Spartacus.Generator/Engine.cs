@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using MersenneTwister;
 using Spartacus.Common;
 using Spartacus.Common.Constraints;
+using Spartacus.Common.Types;
 
 namespace Spartacus.Generator
 {
@@ -41,7 +43,7 @@ namespace Spartacus.Generator
             return examples;
         }
 
-        public List<Example> Generate(int examplesCount, List<BaseConstraint> constraints)
+        public List<Example> Generate(int examplesCount, List<BaseConstraint> constraints, bool linearExtended = false, bool quadraticExtended = false)
         {
             var examples = Generate(examplesCount);
 
@@ -50,7 +52,68 @@ namespace Spartacus.Generator
                 example.Validate(constraints);
             }
 
+            if (linearExtended)
+            {
+                foreach (var example in examples)
+                {
+                    example.Variables.AddRange(ExtendByLinearSamples(example.Variables.ToList()));
+                }
+            }
+
+            if (quadraticExtended)
+            {
+                foreach (var example in examples)
+                {
+                    example.Variables.AddRange(ExtendByQuadraticSamples(example.Variables.ToList()));
+                }
+            }
+
             return examples;
+        }
+
+
+        //TODO Fix It temporary solution
+        private List<Variable> ExtendByLinearSamples(List<Variable> variables)
+        {
+            var extensionVariables = new List<Variable>();
+
+            var linearSchemaSum = new VariableSchema("X1+X2", VariableType.Linear);
+            var linearSchemaMinus = new VariableSchema("X1-X2", VariableType.Linear);
+            var linearSchemaMinusRevert = new VariableSchema("X2-X1", VariableType.Linear);
+
+            for (int i = 0; i < variables.Count - 1; i++)
+            {
+                var actual = variables[i];
+                var next = variables[i + 1];
+
+                extensionVariables.Add(new Variable(linearSchemaSum, actual.Value + next.Value));
+                extensionVariables.Add(new Variable(linearSchemaMinus, actual.Value - next.Value));
+                extensionVariables.Add(new Variable(linearSchemaMinusRevert, next.Value - actual.Value));
+            }
+
+            return extensionVariables;
+        }
+
+        //TODO Fix It temporary solution
+        private List<Variable> ExtendByQuadraticSamples(List<Variable> variables)
+        {
+            var extensionVariables = new List<Variable>();
+
+            var linearSchemaSum = new VariableSchema("X1*X1", VariableType.Quadratic);
+            var linearSchemaMinus = new VariableSchema("X2*X2", VariableType.Quadratic);
+            var linearSchemaMinusRevert = new VariableSchema("X1*X2", VariableType.Quadratic);
+
+            for (int i = 0; i < variables.Count - 1; i++)
+            {
+                var actual = variables[i];
+                var next = variables[i + 1];
+
+                extensionVariables.Add(new Variable(linearSchemaSum, actual.Value * actual.Value));
+                extensionVariables.Add(new Variable(linearSchemaMinus, next.Value * next.Value));
+                extensionVariables.Add(new Variable(linearSchemaMinusRevert, actual.Value * next.Value));
+            }
+
+            return extensionVariables;
         }
     }
 }
