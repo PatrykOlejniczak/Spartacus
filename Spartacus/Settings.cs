@@ -28,12 +28,17 @@ namespace Spartacus
         [Option('q', "quadraticextension", Required = false, HelpText = "Sets whether to generate quadratic dependencies between variables.")]
         public bool QuadraticExtension { get; }
 
-        public Settings(string benchmark, int points, string outputPath, IEnumerable<string> output, IEnumerable<string> sheets, bool linearExtension, bool quadraticExtension)
+        [Option("seed", Required = false, HelpText = "Seed number.")]
+        public int Seed { get; }
+
+        public Settings(string benchmark, int points, string outputPath, IEnumerable<string> output, IEnumerable<string> sheets, bool linearExtension, bool quadraticExtension, int seed = 0)
         {
             Benchmark = benchmark;
             Points = points;
             LinearExtension = linearExtension;
             QuadraticExtension = quadraticExtension;
+
+            Seed = seed;
 
             OutputPath = outputPath ?? Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             Output = output != null ? output.ToList() : new List<string>() { Benchmark };

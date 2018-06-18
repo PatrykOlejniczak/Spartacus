@@ -2,7 +2,6 @@
 using Spartacus.Benchmarks;
 using Spartacus.Generator;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -14,37 +13,29 @@ namespace Spartacus
         static void Main(string[] args)
         {
             Parser.Default.ParseArguments<Settings>(args)
-                  .WithParsed<Settings>(Run);
+                .WithParsed<Settings>(Run);
         }
 
-        private static void Run(Settings opts)
+        private static void Run(Settings settings)
         {
-            var benchmarks = new List<Benchmark>();
-            foreach (Type type in Assembly.GetAssembly(typeof(Benchmark)).GetTypes()
-                                          .Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(Benchmark))))
-            {
-                benchmarks.Add((Benchmark)Activator.CreateInstance(type));
-            }
+            var benchamarkType = Assembly.GetAssembly(typeof(Benchmark)).GetTypes()
+                                         .Single(myType => myType.IsClass &&
+                                                          !myType.IsAbstract &&
+                                                           myType.IsSubclassOf(typeof(Benchmark)) &&
+                                                           myType.Name.ToLower().Equals(settings.Benchmark.ToLower()));
+            var benchmark = (Benchmark)Activator.CreateInstance(benchamarkType);
 
-            var benchmark = benchmarks.Single(bench => bench.Name.ToLower().Equals(opts.Benchmark.ToLower()));
+            var engine = new Engine(benchmark.VariableSchemas.ToList(), settings.LinearExtension, settings.QuadraticExtension, settings.Seed);
 
-            var engine = new Engine(benchmark.VariableSchemas.ToList());
+            var consoleInterface = new ConsoleInterface(engine, benchmark, settings.Points);
 
-            var dataToSave = new List<SheetToSave>();
-            for (int i = 0; i < opts.Sheets.Count(); i++)
-            {
-                dataToSave.Add(new SheetToSave()
-                {
-                    SheetName = opts.Sheets[i],
-                    Examples = engine.Generate(opts.Points, benchmark.Constraints.ToList(), opts.LinearExtension, opts.QuadraticExtension)
-                });
-            }
+            var dataToSave = consoleInterface.Generate(settings.Sheets);
 
-            var writer = new ExcelWriter(opts.OutputPath);
+            var writer = new ExcelWriter(settings.OutputPath);
 
-            writer.Save(dataToSave, opts.Output[0]);
+            writer.Save(dataToSave, settings.Output[0]);
 
-            Console.WriteLine($"Generated! { Path.Combine(opts.OutputPath, opts.Output[0] + ".xlsx") }");
+            Console.WriteLine($"Generated! {Path.Combine(settings.OutputPath, settings.Output[0] + ".xlsx")}");
         }
     }
 }
