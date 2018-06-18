@@ -1,5 +1,5 @@
-﻿using System;
-using Spartacus.Common.Types;
+﻿using Spartacus.Common.Types;
+using System;
 
 namespace Spartacus.Common
 {

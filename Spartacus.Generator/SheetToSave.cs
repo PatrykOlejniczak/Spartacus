@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Spartacus.Common;
+﻿using Spartacus.Common;
+using System.Collections.Generic;
 
 namespace Spartacus.Generator
 {

@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using MersenneTwister;
+﻿using MersenneTwister;
 using Spartacus.Common;
 using Spartacus.Common.Constraints;
 using Spartacus.Common.Types;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Spartacus.Generator
 {

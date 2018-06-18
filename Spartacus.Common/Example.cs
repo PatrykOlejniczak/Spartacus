@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using Spartacus.Common.Constraints;
+﻿using Spartacus.Common.Constraints;
 using Spartacus.Common.Extensions;
 using Spartacus.Common.Types;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Spartacus.Common
 {

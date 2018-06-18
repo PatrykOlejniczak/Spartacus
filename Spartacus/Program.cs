@@ -1,11 +1,11 @@
-﻿using System;
+﻿using CommandLine;
+using Spartacus.Benchmarks;
+using Spartacus.Generator;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using CommandLine;
-using Spartacus.Benchmarks;
-using Spartacus.Generator;
 
 namespace Spartacus
 {

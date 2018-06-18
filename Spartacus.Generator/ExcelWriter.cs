@@ -1,8 +1,8 @@
-﻿using System;
+﻿using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using OfficeOpenXml;
 
 namespace Spartacus.Generator
 {

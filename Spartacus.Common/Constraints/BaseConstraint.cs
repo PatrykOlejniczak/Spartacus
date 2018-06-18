@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Spartacus.Common.Types;
+﻿using Spartacus.Common.Types;
+using System.Collections.Generic;
 
 namespace Spartacus.Common.Constraints
 {
