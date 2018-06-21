@@ -2,6 +2,9 @@
 {
     public class Simplex : Benchmark
     {
-        
+        public Simplex(int dimensions)
+        {
+            
+        }
     }
 }

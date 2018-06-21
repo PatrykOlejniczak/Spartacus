@@ -1,40 +1,40 @@
 ﻿using MersenneTwister;
 using Spartacus.Common;
-using Spartacus.Common.Constraints;
 using Spartacus.Common.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Spartacus.Benchmarks;
 
 namespace Spartacus.Generator
 {
     public class Engine
     {
-        public List<VariableSchema> VariableSchemas { get; }
+        private readonly Benchmark benchmark;
+        private readonly bool linearExtended;
+        private readonly bool quadraticExtended;
+        private readonly int seed;
 
-        public Engine(List<VariableSchema> variableSchemas)
+        public Engine(Benchmark benchmark, bool linearExtended = false, bool quadraticExtended = false, int seed = 1)
         {
-            if (variableSchemas == null || variableSchemas.Count == 0)
-            {
-                throw new ArgumentNullException(nameof(variableSchemas));
-            }
-
-            VariableSchemas = variableSchemas;
+            this.benchmark = benchmark ?? throw new ArgumentNullException(nameof(benchmark));
+            this.linearExtended = linearExtended;
+            this.quadraticExtended = quadraticExtended;
+            this.seed = seed;
         }
 
-        public List<Example> Generate(int examplesCount)
+        public List<Example> GenerateNotLabeled(int examplesCount)
         {
             var examples = new List<Example>();
+            var random = Randoms.Create(seed);
 
             for (int i = 0; i < examplesCount; i++)
             {
                 var exampleVariables = new List<Variable>();
 
-                foreach (var schema in VariableSchemas)
+                foreach (var schema in benchmark.VariableSchemas)
                 {
-                    var random = Randoms.Create();
-
-                    exampleVariables.Add(new Variable(schema, random.Next(Convert.ToInt32(schema.MinValue), Convert.ToInt32(schema.MaxValue))));
+                    exampleVariables.Add(new Variable(schema, random.NextDouble() * (schema.MaxValue - schema.MinValue) + schema.MinValue));
                 }
 
                 examples.Add(new Example(exampleVariables));
@@ -43,13 +43,13 @@ namespace Spartacus.Generator
             return examples;
         }
 
-        public List<Example> Generate(int examplesCount, List<BaseConstraint> constraints, bool linearExtended = false, bool quadraticExtended = false)
+        public List<Example> GenerateLabeled(int examplesCount)
         {
-            var examples = Generate(examplesCount);
+            var examples = GenerateNotLabeled(examplesCount);
 
             foreach (var example in examples)
             {
-                example.Validate(constraints);
+                example.Validate(benchmark.Constraints);
             }
 
             if (linearExtended)

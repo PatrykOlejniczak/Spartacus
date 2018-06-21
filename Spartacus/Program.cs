@@ -1,41 +1,56 @@
 ﻿using CommandLine;
 using Spartacus.Benchmarks;
+using Spartacus.Benchmarks.Defined;
 using Spartacus.Generator;
 using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection;
 
 namespace Spartacus
 {
-    internal class Program
+    public class Program
     {
-        static void Main(string[] args)
+        private static Engine engine;
+
+        public static void Main(string[] args)
         {
-            Parser.Default.ParseArguments<Settings>(args)
-                .WithParsed<Settings>(Run);
+            Parser.Default.ParseArguments<CubeSettings, BallSettings, SimplexSettings>(args)
+                          .MapResult(
+                                (CubeSettings opts) => Run(new Cube(opts.Dimension, opts.Constant), opts),
+                                (BallSettings opts) => Run(new Ball(opts.Radius, opts.Center.ToArray()), opts),
+                                (SimplexSettings opts) => Run(new Simplex(opts.Dimension), opts),
+                                errors => 1);
         }
 
-        private static void Run(Settings settings)
+        private static int Run(Benchmark benchmark, Settings settings)
         {
-            var benchamarkType = Assembly.GetAssembly(typeof(Benchmark)).GetTypes()
-                                         .Single(myType => myType.IsClass &&
-                                                          !myType.IsAbstract &&
-                                                           myType.IsSubclassOf(typeof(Benchmark)) &&
-                                                           myType.Name.ToLower().Equals(settings.Benchmark.ToLower()));
-            var benchmark = (Benchmark)Activator.CreateInstance(benchamarkType);
+            engine = new Engine(benchmark, settings.LinearExtension, settings.QuadraticExtension, settings.Seed);
 
-            var engine = new Engine(benchmark.VariableSchemas.ToList(), settings.LinearExtension, settings.QuadraticExtension, settings.Seed);
-
-            var consoleInterface = new ConsoleInterface(engine, benchmark, settings.Points);
-
-            var dataToSave = consoleInterface.Generate(settings.Sheets);
+            var dataToSave = GenerateExamples(settings.Sheets, settings.Points);
 
             var writer = new ExcelWriter(settings.OutputPath);
 
             writer.Save(dataToSave, settings.Output[0]);
 
             Console.WriteLine($"Generated! {Path.Combine(settings.OutputPath, settings.Output[0] + ".xlsx")}");
+
+            return 0;
+        }
+
+        private static List<SheetToSave> GenerateExamples(List<string> sheets, int points)
+        {
+            var dataToSave = new List<SheetToSave>();
+
+            foreach (var sheet in sheets)
+            {
+                dataToSave.Add(new SheetToSave()
+                {
+                    SheetName = sheet,
+                    Examples = engine.GenerateLabeled(points)
+                });
+            }
+
+            return dataToSave;
         }
     }
 }

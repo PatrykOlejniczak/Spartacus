@@ -23,7 +23,7 @@ namespace Spartacus.Common
             Variables = new List<Variable>(variables);
         }
 
-        public void Validate(IList<BaseConstraint> constraints)
+        public void Validate(IEnumerable<BaseConstraint> constraints)
         {
             ExampleType = ExampleType.Infeasible;
 
@@ -49,7 +49,8 @@ namespace Spartacus.Common
 
         public override string ToString()
         {  
-            return string.Join(",", Variables.Select(e => e.Value)) + "," + ExampleType.Check(ExampleType.Feasible);
+            //TODO Maybe instead string.Replace do it with some more elegant way
+            return string.Join(",", Variables.Select(e => e.Value.ToString().Replace(',', '.'))) + "," + ExampleType.Check(ExampleType.Feasible);
         }
     }
 }

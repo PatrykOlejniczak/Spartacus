@@ -5,9 +5,8 @@ using System.Linq;
 
 namespace Spartacus
 {
-    public class Settings
+    public abstract class Settings
     {
-        [Option('b', "benchamark", Required = true, HelpText = "Benchmark name.")]
         public string Benchmark { get; }
 
         [Option('p', "points", Required = true, HelpText = "Number of points to be drawn.")]
@@ -31,9 +30,10 @@ namespace Spartacus
         [Option("seed", Required = false, HelpText = "Seed number.")]
         public int Seed { get; }
 
-        public Settings(string benchmark, int points, string outputPath, IEnumerable<string> output, IEnumerable<string> sheets, bool linearExtension, bool quadraticExtension, int seed = 0)
+        public Settings(int points, string outputPath, IEnumerable<string> output, IEnumerable<string> sheets, bool linearExtension, bool quadraticExtension, int seed)
         {
-            Benchmark = benchmark;
+            Benchmark = this.GetType().Name;
+
             Points = points;
             LinearExtension = linearExtension;
             QuadraticExtension = quadraticExtension;
@@ -41,6 +41,7 @@ namespace Spartacus
             Seed = seed;
 
             OutputPath = outputPath ?? Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+
             Output = output != null ? output.ToList() : new List<string>() { Benchmark };
             Sheets = sheets != null ? sheets.ToList() : new List<string>() { Benchmark };
         }
