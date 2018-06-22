@@ -18,7 +18,7 @@ namespace Spartacus
                           .MapResult(
                                 (CubeSettings opts) => Run(new Cube(opts.Dimension, opts.Constant), opts),
                                 (BallSettings opts) => Run(new Ball(opts.Radius, opts.Center.ToArray()), opts),
-                                (SimplexSettings opts) => Run(new Simplex(opts.Dimension), opts),
+                                (SimplexSettings opts) => Run(new Simplex(opts.Dimension, opts.Constant), opts),
                                 errors => 1);
         }
 
