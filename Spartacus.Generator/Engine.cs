@@ -72,45 +72,58 @@ namespace Spartacus.Generator
         }
 
 
-        //TODO Fix It temporary solution
+        //TODO Fix It temporary solution, do it some elegant way as extension for engine or something
         private List<Variable> ExtendByLinearSamples(List<Variable> variables)
         {
             var extensionVariables = new List<Variable>();
 
-            var linearSchemaSum = new VariableSchema("X1+X2", VariableType.Linear);
-            var linearSchemaMinus = new VariableSchema("X1-X2", VariableType.Linear);
-            var linearSchemaMinusRevert = new VariableSchema("X2-X1", VariableType.Linear);
-
-            for (int i = 0; i < variables.Count - 1; i++)
+            for (int i = 0; i < variables.Count; i++)
             {
-                var actual = variables[i];
-                var next = variables[i + 1];
+                for (int j = i; j < variables.Count; j++)
+                {
+                    if (j > i)
+                    {
 
-                extensionVariables.Add(new Variable(linearSchemaSum, actual.Value + next.Value));
-                extensionVariables.Add(new Variable(linearSchemaMinus, actual.Value - next.Value));
-                extensionVariables.Add(new Variable(linearSchemaMinusRevert, next.Value - actual.Value));
+                        var linearSchemaSum =
+                            new VariableSchema($"{variables[i].Schema.Symbol}+{variables[j].Schema.Symbol}", VariableType.Linear);
+                        var linearSchemaMinus =
+                            new VariableSchema($"{variables[i].Schema.Symbol}-{variables[j].Schema.Symbol}", VariableType.Linear);
+                        var linearSchemaMinusRevert =
+                            new VariableSchema($"{variables[j].Schema.Symbol}-{variables[i].Schema.Symbol}", VariableType.Linear);
+
+                        extensionVariables.Add(
+                            new Variable(linearSchemaSum, variables[i].Value + variables[j].Value));
+                        extensionVariables.Add(
+                            new Variable(linearSchemaMinus,variables[i].Value - variables[j].Value));
+                        extensionVariables.Add(
+                            new Variable(linearSchemaMinusRevert,variables[j].Value - variables[i].Value));
+                    }
+                }
             }
 
             return extensionVariables;
         }
 
-        //TODO Fix It temporary solution
+        //TODO Fix It temporary solution, do it some elegant way as extension for engine or something
         private List<Variable> ExtendByQuadraticSamples(List<Variable> variables)
         {
             var extensionVariables = new List<Variable>();
 
-            var linearSchemaSum = new VariableSchema("X1*X1", VariableType.Quadratic);
-            var linearSchemaMinus = new VariableSchema("X2*X2", VariableType.Quadratic);
-            var linearSchemaMinusRevert = new VariableSchema("X1*X2", VariableType.Quadratic);
-
-            for (int i = 0; i < variables.Count - 1; i++)
+            for (int i = 0; i < variables.Count; i++)
             {
-                var actual = variables[i];
-                var next = variables[i + 1];
+                var quadraticSchema = new VariableSchema($"{variables[i].Schema.Symbol}*{variables[i].Schema.Symbol}", VariableType.Quadratic);
+                extensionVariables.Add(new Variable(quadraticSchema, variables[i].Value * variables[i].Value));
 
-                extensionVariables.Add(new Variable(linearSchemaSum, actual.Value * actual.Value));
-                extensionVariables.Add(new Variable(linearSchemaMinus, next.Value * next.Value));
-                extensionVariables.Add(new Variable(linearSchemaMinusRevert, actual.Value * next.Value));
+                for (int j = i; j < variables.Count; j++)
+                {
+                    if (j > i)
+                    {
+                        var quadraticSchemaBetweenVariables = 
+                            new VariableSchema($"{variables[i].Schema.Symbol}*{variables[j].Schema.Symbol}", VariableType.Quadratic);
+                        extensionVariables.Add(
+                            new Variable(quadraticSchemaBetweenVariables, variables[i].Value * variables[j].Value));
+                    }
+                }
             }
 
             return extensionVariables;
