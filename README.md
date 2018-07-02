@@ -22,6 +22,7 @@ Table: Sample output xlsx datasheet
 ### Rules for generating points
 
 ![Visualization](/docs/images/formulated_benchmarks.JPG)
+
 Image: Benchmark formulated as MP models
 
 ### Available parameters
@@ -35,21 +36,29 @@ Image: Benchmark formulated as MP models
 | --linearextension  | Generate additional columns with linear dependencies | --l true | No |
 | --quadraticextension  | Generate additional columns with quadratic dependencies | --q false | No |
 | --seed  | Seed for MersenneTwister | --seed 123 | No |
+
 Table: Common parameters for all benchamarks
+
 <br />
 <br />
+
 | Paramater | Description | Sample used | Required |
 |:---------:|:-----------:|:-----------:|:--------:|
 |--constant|Parameter used to bound variables (d in formulas)|--constant 5| Yes |
 |--dimensions|Number of dimensions|--diemnsions 2|Yes|
+
 Table: Parameters only for Cube and Simplex
+
 <br />
 <br />
+
 | Paramater | Description | Sample used | Required |
 |:---------:|:-----------:|:-----------:|:--------:|
 |--radius|Radius of ball|--radius 5| Yes |
 |--center|Center of ball (affects the number of dimensions -> X1, X2, X3 etc) |--center 1 2 3 |Yes|
+
 Table: Parameters only for Ball
+
 <br />
 <br />
 
