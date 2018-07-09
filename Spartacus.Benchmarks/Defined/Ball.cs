@@ -7,7 +7,7 @@ namespace Spartacus.Benchmarks.Defined
 {
     public class Ball : Benchmark
     {
-        public Ball(double radius, params double[] center)
+        public Ball(double radius, int modules, params double[] center)
         {
             var constraint = new SquarePowerConstraint(Math.Pow(radius, 2), ComparisonKind.LessOrEqual);
 

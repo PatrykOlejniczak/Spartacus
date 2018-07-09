@@ -30,7 +30,10 @@ namespace Spartacus
         [Option("seed", Required = false, HelpText = "Seed number.")]
         public int Seed { get; }
 
-        public Settings(int points, string outputPath, IEnumerable<string> output, IEnumerable<string> sheets, bool linearExtension, bool quadraticExtension, int seed)
+        [Option("modules", Required = false, Default = 1, HelpText = "Modules number.")]
+        public int Modules { get; }
+
+        public Settings(int points, string outputPath, IEnumerable<string> output, IEnumerable<string> sheets, bool linearExtension, bool quadraticExtension, int seed, int modules)
         {
             Benchmark = this.GetType().Name;
 
@@ -39,6 +42,7 @@ namespace Spartacus
             QuadraticExtension = quadraticExtension;
 
             Seed = seed;
+            Modules = modules;
 
             OutputPath = outputPath ?? Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 

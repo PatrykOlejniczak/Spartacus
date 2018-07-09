@@ -16,9 +16,9 @@ namespace Spartacus
         {
             Parser.Default.ParseArguments<CubeSettings, BallSettings, SimplexSettings>(args)
                           .MapResult(
-                                (CubeSettings opts) => Run(new Cube(opts.Dimension, opts.Constant), opts),
-                                (BallSettings opts) => Run(new Ball(opts.Radius, opts.Center.ToArray()), opts),
-                                (SimplexSettings opts) => Run(new Simplex(opts.Dimension, opts.Constant), opts),
+                                (CubeSettings opts) => Run(new Cube(opts.Dimension, opts.Constant, opts.Modules), opts),
+                                (BallSettings opts) => Run(new Ball(opts.Radius, opts.Modules, opts.Center.ToArray()), opts),
+                                (SimplexSettings opts) => Run(new Simplex(opts.Dimension, opts.Constant, opts.Modules), opts),
                                 errors => 1);
         }
 

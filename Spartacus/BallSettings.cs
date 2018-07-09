@@ -13,12 +13,12 @@ namespace Spartacus
         [Option("center", Required = true, HelpText = "Center of the ball.")]
         public List<double> Center { get; }
 
-        public BallSettings(double radius, IEnumerable<double> center, int points, string outputPath, IEnumerable<string> output, IEnumerable<string> sheets, bool linearExtension, bool quadraticExtension, int seed)
-            : base(points, outputPath, output, sheets, linearExtension, quadraticExtension, seed)
+        public BallSettings(double radius, IEnumerable<double> center, int points, string outputPath, IEnumerable<string> output, IEnumerable<string> sheets, bool linearExtension, bool quadraticExtension, int seed, int modules)
+            : base(points, outputPath, output, sheets, linearExtension, quadraticExtension, seed, modules)
         {
             Radius = radius;
 
-            Center = center != null ? center.ToList() : new List<double>() { };
+            Center = center != null ? center.ToList() : new List<double>();
         }
     }
 }

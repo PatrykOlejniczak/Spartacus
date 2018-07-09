@@ -7,7 +7,7 @@ namespace Spartacus.Benchmarks.Defined
 {
     public class Simplex : Benchmark
     {
-        public Simplex(int dimension, double constant)
+        public Simplex(int dimension, double constant, int modules = 1)
         {
             double tangens = Math.Tan(15.0 * Math.PI / 180.0);
             double cotangens = 1.0 / tangens;
