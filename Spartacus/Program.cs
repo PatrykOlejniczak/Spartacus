@@ -16,28 +16,28 @@ namespace Spartacus
         {
             Parser.Default.ParseArguments<CubeSettings, BallSettings, SimplexSettings>(args)
                           .MapResult(
-                                (CubeSettings opts) => Run(new Cube(opts.Dimension, opts.Constant, opts.Modules), opts),
-                                (BallSettings opts) => Run(new Ball(opts.Radius, opts.Modules, opts.Center.ToArray()), opts),
-                                (SimplexSettings opts) => Run(new Simplex(opts.Dimension, opts.Constant, opts.Modules), opts),
+                                (CubeSettings opts) => Run(new Cube(opts.Dimension, opts.Constant, opts.Elements), opts),
+                                (BallSettings opts) => Run(new Ball(opts.Radius, opts.Elements, opts.Center.ToArray()), opts),
+                                (SimplexSettings opts) => Run(new Simplex(opts.Dimension, opts.Constant, opts.Elements), opts),
                                 errors => 1);
         }
 
-        private static int Run(Benchmark benchmark, Settings settings)
+        private static int Run(Benchmark benchmark, BaseSettings baseSettings)
         {
-            engine = new Engine(benchmark, settings.LinearExtension, settings.QuadraticExtension, settings.Seed);
+            engine = new Engine(benchmark, baseSettings.LinearExtension, baseSettings.QuadraticExtension, baseSettings.Seed);
 
-            var dataToSave = GenerateExamples(settings.Sheets, settings.Points);
+            var dataToSave = GenerateExamples(baseSettings.Sheets, baseSettings.Points, baseSettings.MinimumFeasibles);
 
-            var writer = new ExcelWriter(settings.OutputPath);
+            var writer = new ExcelWriter(baseSettings.OutputPath);
 
-            writer.Save(dataToSave, settings.Output[0]);
+            writer.Save(dataToSave, baseSettings.Output[0]);
 
-            Console.WriteLine($"Generated! {Path.Combine(settings.OutputPath, settings.Output[0] + ".xlsx")}");
+            Console.WriteLine($"Generated! {Path.Combine(baseSettings.OutputPath, baseSettings.Output[0] + ".xlsx")}");
 
             return 0;
         }
 
-        private static List<SheetToSave> GenerateExamples(List<string> sheets, int points)
+        private static List<SheetToSave> GenerateExamples(List<string> sheets, int points, int minimumFeasibles)
         {
             var dataToSave = new List<SheetToSave>();
 
@@ -46,7 +46,7 @@ namespace Spartacus
                 dataToSave.Add(new SheetToSave()
                 {
                     SheetName = sheet,
-                    Examples = engine.GenerateLabeled(points)
+                    Examples = engine.GenerateLabeled(points, minimumFeasibles)
                 });
             }
 

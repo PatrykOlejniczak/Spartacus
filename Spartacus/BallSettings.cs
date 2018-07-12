@@ -5,7 +5,7 @@ using System.Linq;
 namespace Spartacus
 {
     [Verb("ball")]
-    public class BallSettings : Settings
+    public class BallSettings : BaseSettings
     {
         [Option("radius", Required = true, HelpText = "Radius of the ball.")]
         public double Radius { get; }
@@ -13,8 +13,8 @@ namespace Spartacus
         [Option("center", Required = true, HelpText = "Center of the ball.")]
         public List<double> Center { get; }
 
-        public BallSettings(double radius, IEnumerable<double> center, int points, string outputPath, IEnumerable<string> output, IEnumerable<string> sheets, bool linearExtension, bool quadraticExtension, int seed, int modules)
-            : base(points, outputPath, output, sheets, linearExtension, quadraticExtension, seed, modules)
+        public BallSettings(double radius, IEnumerable<double> center, bool onlyFeasible, int minimumFeasibles, int points, string outputPath, IEnumerable<string> output, IEnumerable<string> sheets, bool linearExtension, bool quadraticExtension, int seed, int elements)
+            : base(points, onlyFeasible, minimumFeasibles, outputPath, output, sheets, linearExtension, quadraticExtension, seed, elements)
         {
             Radius = radius;
 

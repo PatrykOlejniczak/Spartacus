@@ -43,7 +43,7 @@ namespace Spartacus.Generator
             return examples;
         }
 
-        public List<Example> GenerateLabeled(int examplesCount)
+        public List<Example> GenerateLabeled(int examplesCount, int minimumFeasibles = 0)
         {
             var examples = GenerateNotLabeled(examplesCount);
 

@@ -5,18 +5,24 @@ using System.Linq;
 
 namespace Spartacus
 {
-    public abstract class Settings
+    public abstract class BaseSettings
     {
         public string Benchmark { get; }
 
         [Option('p', "points", Required = true, HelpText = "Number of points to be drawn.")]
         public int Points { get; }
 
+        [Option("onlyFeasible", Required = false, Default = false, HelpText = "Save only feasible state examples.")]
+        public bool OnlyFeasible { get; }
+
+        [Option("minimumFeasibles", Required = false, Default = 0, HelpText = "Determinate minimum feasible states in every sheet.")]
+        public int MinimumFeasibles { get; }
+
         [Option("outputpath", Required = false, HelpText = "Path to the place where the resulting files are saved. Default is user profile.")]
         public string OutputPath { get; }
 
         [Option("output", Required = false, HelpText = "List with the result file names. Default is benchmark name.")]
-        public List<string> Output { get; }
+        public List<string> Output { get; protected set;  }
 
         [Option("sheets", Required = false, HelpText = "List with names of sheets in each result file. Default is benchmark name.")]
         public List<string> Sheets { get; }
@@ -30,10 +36,10 @@ namespace Spartacus
         [Option("seed", Required = false, HelpText = "Seed number.")]
         public int Seed { get; }
 
-        [Option("modules", Required = false, Default = 1, HelpText = "Modules number.")]
-        public int Modules { get; }
+        [Option("elements", Required = false, Default = 1, HelpText = "Elements number.")]
+        public int Elements { get; }
 
-        public Settings(int points, string outputPath, IEnumerable<string> output, IEnumerable<string> sheets, bool linearExtension, bool quadraticExtension, int seed, int modules)
+        public BaseSettings(int points, bool onlyFeasible, int minimumFeasibles, string outputPath, IEnumerable<string> output, IEnumerable<string> sheets, bool linearExtension, bool quadraticExtension, int seed, int elements)
         {
             Benchmark = this.GetType().Name;
 
@@ -42,7 +48,9 @@ namespace Spartacus
             QuadraticExtension = quadraticExtension;
 
             Seed = seed;
-            Modules = modules;
+            Elements = elements;
+            OnlyFeasible = onlyFeasible;
+            MinimumFeasibles = minimumFeasibles;
 
             OutputPath = outputPath ?? Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 
