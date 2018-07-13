@@ -1,16 +1,16 @@
-﻿using OfficeOpenXml;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using OfficeOpenXml;
 
-namespace Spartacus.Generator
+namespace Spartacus.Generator.Storage
 {
-    public class ExcelWriter
+    public class ExcelStorage
     {
         private readonly string directoryPath;
 
-        public ExcelWriter(string directoryPath)
+        public ExcelStorage(string directoryPath)
         {
             if (string.IsNullOrWhiteSpace(directoryPath))
             {

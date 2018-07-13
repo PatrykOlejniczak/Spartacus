@@ -1,7 +1,7 @@
-﻿using Spartacus.Common;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Spartacus.Common;
 
-namespace Spartacus.Generator
+namespace Spartacus.Generator.Storage
 {
     public class SheetToSave
     {

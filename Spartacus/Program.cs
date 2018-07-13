@@ -5,13 +5,13 @@ using Spartacus.Generator;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Spartacus.Generator.Randoms;
+using Spartacus.Generator.Storage;
 
 namespace Spartacus
 {
     public class Program
     {
-        private static Engine engine;
-
         public static void Main(string[] args)
         {
             Parser.Default.ParseArguments<CubeSettings, BallSettings, SimplexSettings>(args)
@@ -22,35 +22,27 @@ namespace Spartacus
                                 errors => 1);
         }
 
-        private static int Run(Benchmark benchmark, BaseSettings baseSettings)
+        private static int Run(Benchmark benchmark, BaseGeneratorSettings baseGeneratorSettings)
         {
-            engine = new Engine(benchmark, baseSettings.LinearExtension, baseSettings.QuadraticExtension, baseSettings.Seed);
+            var engine = new Engine(new MersenneTwisterWrapper(baseGeneratorSettings.Seed));
 
-            var dataToSave = GenerateExamples(baseSettings.Sheets, baseSettings.Points, baseSettings.MinimumFeasibles);
-
-            var writer = new ExcelWriter(baseSettings.OutputPath);
-
-            writer.Save(dataToSave, baseSettings.Output[0]);
-
-            Console.WriteLine($"Generated! {Path.Combine(baseSettings.OutputPath, baseSettings.Output[0] + ".xlsx")}");
-
-            return 0;
-        }
-
-        private static List<SheetToSave> GenerateExamples(List<string> sheets, int points, int minimumFeasibles)
-        {
             var dataToSave = new List<SheetToSave>();
-
-            foreach (var sheet in sheets)
+            foreach (var sheet in baseGeneratorSettings.Sheets)
             {
                 dataToSave.Add(new SheetToSave()
                 {
                     SheetName = sheet,
-                    Examples = engine.GenerateLabeled(points, minimumFeasibles)
+                    Examples = engine.Generate(new GenerateParameter(benchmark, baseGeneratorSettings.Points, baseGeneratorSettings.MinimumFeasibles))
                 });
             }
 
-            return dataToSave;
+            var writer = new ExcelStorage(baseGeneratorSettings.OutputPath);
+
+            writer.Save(dataToSave, baseGeneratorSettings.Output[0]);
+
+            Console.WriteLine($"Generated! {Path.Combine(baseGeneratorSettings.OutputPath, baseGeneratorSettings.Output[0] + ".xlsx")}");
+
+            return 0;
         }
     }
 }

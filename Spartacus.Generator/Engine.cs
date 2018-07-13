@@ -1,132 +1,53 @@
-﻿using MersenneTwister;
-using Spartacus.Common;
+﻿using Spartacus.Common;
 using Spartacus.Common.Types;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using Spartacus.Benchmarks;
+using Spartacus.Generator.Randoms;
+using Spartacus.Generator.Terms;
 
 namespace Spartacus.Generator
 {
-    public class Engine
+    public class Engine : IEngine
     {
-        private readonly Benchmark benchmark;
-        private readonly bool linearExtended;
-        private readonly bool quadraticExtended;
-        private readonly int seed;
+        private readonly List<ITermCalculator> terms;
+        private readonly IRandomizer randomizer;
 
-        public Engine(Benchmark benchmark, bool linearExtended = false, bool quadraticExtended = false, int seed = 1)
+        public Engine(IRandomizer randomizer, List<ITermCalculator> terms = null)
         {
-            this.benchmark = benchmark ?? throw new ArgumentNullException(nameof(benchmark));
-            this.linearExtended = linearExtended;
-            this.quadraticExtended = quadraticExtended;
-            this.seed = seed;
+            this.randomizer = randomizer;
+            this.terms = terms ?? new List<ITermCalculator>();
         }
 
-        public List<Example> GenerateNotLabeled(int examplesCount)
+        public List<Example> Generate(GenerateParameter parameters)
         {
             var examples = new List<Example>();
-            var random = Randoms.Create(seed);
 
-            for (int i = 0; i < examplesCount; i++)
+            while (examples.Count < parameters.Examples)
             {
                 var exampleVariables = new List<Variable>();
 
-                foreach (var schema in benchmark.VariableSchemas)
+                foreach (var schema in parameters.Benchmark.VariableSchemas)
                 {
-                    exampleVariables.Add(new Variable(schema, random.NextDouble() * (schema.MaxValue - schema.MinValue) + schema.MinValue));
+                    exampleVariables.Add(new Variable(schema, randomizer.NextDouble(schema.MinValue, schema.MaxValue)));
                 }
 
-                examples.Add(new Example(exampleVariables));
+                var proposition = new Example(exampleVariables);
+
+                proposition.Validate(parameters.Benchmark.Constraints);
+                if (proposition.ExampleType == ExampleType.Infeasible
+                        && examples.Count < parameters.MinimumFeasibleExamples)
+                {
+                    continue;
+                }
+
+                examples.Add(proposition);
+            }
+
+            foreach (var term in terms)
+            {
+                term.Calculate(examples);
             }
 
             return examples;
-        }
-
-        public List<Example> GenerateLabeled(int examplesCount, int minimumFeasibles = 0)
-        {
-            var examples = GenerateNotLabeled(examplesCount);
-
-            foreach (var example in examples)
-            {
-                example.Validate(benchmark.Constraints);
-            }
-
-            if (linearExtended)
-            {
-                foreach (var example in examples)
-                {
-                    example.Variables.AddRange(ExtendByLinearSamples(example.Variables.ToList()));
-                }
-            }
-
-            if (quadraticExtended)
-            {
-                foreach (var example in examples)
-                {
-                    example.Variables.AddRange(ExtendByQuadraticSamples(example.Variables.ToList()));
-                }
-            }
-
-            return examples;
-        }
-
-
-        //TODO Fix It temporary solution, do it some elegant way as extension for engine or something
-        private List<Variable> ExtendByLinearSamples(List<Variable> variables)
-        {
-            var extensionVariables = new List<Variable>();
-
-            for (int i = 0; i < variables.Count; i++)
-            {
-                for (int j = i; j < variables.Count; j++)
-                {
-                    if (j > i)
-                    {
-
-                        var linearSchemaSum =
-                            new VariableSchema($"{variables[i].Schema.Symbol}+{variables[j].Schema.Symbol}", VariableType.Linear);
-                        var linearSchemaMinus =
-                            new VariableSchema($"{variables[i].Schema.Symbol}-{variables[j].Schema.Symbol}", VariableType.Linear);
-                        var linearSchemaMinusRevert =
-                            new VariableSchema($"{variables[j].Schema.Symbol}-{variables[i].Schema.Symbol}", VariableType.Linear);
-
-                        extensionVariables.Add(
-                            new Variable(linearSchemaSum, variables[i].Value + variables[j].Value));
-                        extensionVariables.Add(
-                            new Variable(linearSchemaMinus,variables[i].Value - variables[j].Value));
-                        extensionVariables.Add(
-                            new Variable(linearSchemaMinusRevert,variables[j].Value - variables[i].Value));
-                    }
-                }
-            }
-
-            return extensionVariables;
-        }
-
-        //TODO Fix It temporary solution, do it some elegant way as extension for engine or something
-        private List<Variable> ExtendByQuadraticSamples(List<Variable> variables)
-        {
-            var extensionVariables = new List<Variable>();
-
-            for (int i = 0; i < variables.Count; i++)
-            {
-                var quadraticSchema = new VariableSchema($"{variables[i].Schema.Symbol}*{variables[i].Schema.Symbol}", VariableType.Quadratic);
-                extensionVariables.Add(new Variable(quadraticSchema, variables[i].Value * variables[i].Value));
-
-                for (int j = i; j < variables.Count; j++)
-                {
-                    if (j > i)
-                    {
-                        var quadraticSchemaBetweenVariables = 
-                            new VariableSchema($"{variables[i].Schema.Symbol}*{variables[j].Schema.Symbol}", VariableType.Quadratic);
-                        extensionVariables.Add(
-                            new Variable(quadraticSchemaBetweenVariables, variables[i].Value * variables[j].Value));
-                    }
-                }
-            }
-
-            return extensionVariables;
         }
     }
 }

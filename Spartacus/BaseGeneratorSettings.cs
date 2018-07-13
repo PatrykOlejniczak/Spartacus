@@ -5,15 +5,18 @@ using System.Linq;
 
 namespace Spartacus
 {
-    public abstract class BaseSettings
+    public abstract class BaseGeneratorSettings
     {
         public string Benchmark { get; }
 
+        [Option("constant", Default = 2.7, Required = false, HelpText = "Constant of the cube.")]
+        public double Constant { get; }
+
+        [Option("dimension", Default = 2, Required = false, HelpText = "Dimension of the cube.")]
+        public int Dimension { get; }
+
         [Option('p', "points", Required = true, HelpText = "Number of points to be drawn.")]
         public int Points { get; }
-
-        [Option("onlyFeasible", Required = false, Default = false, HelpText = "Save only feasible state examples.")]
-        public bool OnlyFeasible { get; }
 
         [Option("minimumFeasibles", Required = false, Default = 0, HelpText = "Determinate minimum feasible states in every sheet.")]
         public int MinimumFeasibles { get; }
@@ -22,7 +25,7 @@ namespace Spartacus
         public string OutputPath { get; }
 
         [Option("output", Required = false, HelpText = "List with the result file names. Default is benchmark name.")]
-        public List<string> Output { get; protected set;  }
+        public List<string> Output { get; }
 
         [Option("sheets", Required = false, HelpText = "List with names of sheets in each result file. Default is benchmark name.")]
         public List<string> Sheets { get; }
@@ -39,9 +42,12 @@ namespace Spartacus
         [Option("elements", Required = false, Default = 1, HelpText = "Elements number.")]
         public int Elements { get; }
 
-        public BaseSettings(int points, bool onlyFeasible, int minimumFeasibles, string outputPath, IEnumerable<string> output, IEnumerable<string> sheets, bool linearExtension, bool quadraticExtension, int seed, int elements)
+        protected BaseGeneratorSettings(double constant, int dimension, int points, int minimumFeasibles, string outputPath, IEnumerable<string> output, IEnumerable<string> sheets, bool linearExtension, bool quadraticExtension, int seed, int elements)
         {
             Benchmark = this.GetType().Name;
+
+            Constant = constant;
+            Dimension = dimension;
 
             Points = points;
             LinearExtension = linearExtension;
@@ -49,12 +55,11 @@ namespace Spartacus
 
             Seed = seed;
             Elements = elements;
-            OnlyFeasible = onlyFeasible;
             MinimumFeasibles = minimumFeasibles;
 
             OutputPath = outputPath ?? Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 
-            Output = output != null ? output.ToList() : new List<string>() { Benchmark };
+            Output = output != null ? output.ToList() : new List<string>() { $"{Benchmark}_{elements}n_{dimension}_{seed}" };
             Sheets = sheets != null ? sheets.ToList() : new List<string>() { Benchmark };
         }
     }
