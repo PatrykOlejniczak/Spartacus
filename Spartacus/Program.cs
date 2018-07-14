@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using Spartacus.Generator.Randoms;
 using Spartacus.Generator.Storage;
+using Spartacus.Generator.Terms;
 
 namespace Spartacus
 {
@@ -24,7 +25,19 @@ namespace Spartacus
 
         private static int Run(Benchmark benchmark, BaseGeneratorSettings baseGeneratorSettings)
         {
-            var engine = new Engine(new MersenneTwisterWrapper(baseGeneratorSettings.Seed));
+            var extensions = new List<ITermCalculator>();
+
+            if (baseGeneratorSettings.LinearExtension)
+            {
+                extensions.Add(new LinearTerms());
+            }
+
+            if (baseGeneratorSettings.QuadraticExtension)
+            {
+                extensions.Add(new QuadraticTerms());
+            }
+
+            var engine = new Engine(new MersenneTwisterWrapper(baseGeneratorSettings.Seed), extensions);
 
             var dataToSave = new List<SheetToSave>();
             foreach (var sheet in baseGeneratorSettings.Sheets)

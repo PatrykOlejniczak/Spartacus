@@ -30,13 +30,13 @@ namespace Spartacus
         [Option("sheets", Required = false, HelpText = "List with names of sheets in each result file. Default is benchmark name.")]
         public List<string> Sheets { get; }
 
-        [Option('l', "linearextension", Required = false, HelpText = "Sets whether to generate linear dependencies between variables.")]
+        [Option('l', "linearextension", Required = false, Default = false, HelpText = "Sets whether to generate linear dependencies between variables.")]
         public bool LinearExtension { get; }
 
-        [Option('q', "quadraticextension", Required = false, HelpText = "Sets whether to generate quadratic dependencies between variables.")]
+        [Option('q', "quadraticextension", Required = false, Default = false, HelpText = "Sets whether to generate quadratic dependencies between variables.")]
         public bool QuadraticExtension { get; }
 
-        [Option("seed", Required = false, HelpText = "Seed number.")]
+        [Option("seed", Required = false, Default = 0, HelpText = "Seed number.")]
         public int Seed { get; }
 
         [Option("elements", Required = false, Default = 1, HelpText = "Elements number.")]
@@ -44,7 +44,7 @@ namespace Spartacus
 
         protected BaseGeneratorSettings(double constant, int dimension, int points, int minimumFeasibles, string outputPath, IEnumerable<string> output, IEnumerable<string> sheets, bool linearExtension, bool quadraticExtension, int seed, int elements)
         {
-            Benchmark = this.GetType().Name;
+            Benchmark = this.GetType().Name.Replace("Settings", "");
 
             Constant = constant;
             Dimension = dimension;
@@ -59,7 +59,7 @@ namespace Spartacus
 
             OutputPath = outputPath ?? Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 
-            Output = output != null ? output.ToList() : new List<string>() { $"{Benchmark}_{elements}n_{dimension}_{seed}" };
+            Output = output != null ? output.ToList() : new List<string>() { $"{Benchmark}_{dimension}n_{elements}k_{seed}" };
             Sheets = sheets != null ? sheets.ToList() : new List<string>() { Benchmark };
         }
     }
