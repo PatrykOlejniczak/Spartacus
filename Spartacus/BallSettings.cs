@@ -15,7 +15,7 @@ namespace Spartacus
 
         //TODO Fix that Constant and radius is same! and dimensions is get from center point parameters!
         public BallSettings(IEnumerable<double> center, double radius, double constant, int dimension, int points, int minimumFeasibles, string outputPath, IEnumerable<string> output, IEnumerable<string> sheets, bool linearExtension, bool quadraticExtension, int seed, int elements)
-            : base(radius, 2, points, minimumFeasibles, outputPath, output, sheets, linearExtension, quadraticExtension, seed, elements)
+            : base(radius, center.Count(), points, minimumFeasibles, outputPath, output, sheets, linearExtension, quadraticExtension, seed, elements)
         {
             Radius = radius;
 
