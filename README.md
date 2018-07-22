@@ -1,3 +1,5 @@
+**Still working on it, IT NOT STABLE, NOT USE IN COMMERCIAL** (Info: 07.2018)
+
 # Spartcus
 
 Spartacus program to generate datasets according to given constraints. 
