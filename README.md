@@ -85,7 +85,7 @@ Table: Parameters only for Ball
 ## How to use
 Compile and run *dotnet Sparatus.dll*.
 
-### Sample
+### Sample ![](/docs/images/sample_definition.JPG)
 |![](/docs/images/cube_sample_1_symbol.JPG)|![](/docs/images/cube_sample_2_symbol.JPG)|![](/docs/images/cube_sample_3_symbol.JPG)|
 |:---------:|:-----------:|:-----------:|
 |![](/docs/images/cube_sample_1.JPG)|![](/docs/images/cube_sample_2.JPG)|![](/docs/images/cube_sample_3.JPG)|
