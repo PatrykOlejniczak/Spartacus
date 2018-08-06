@@ -3,7 +3,7 @@ using Spartacus.Common;
 
 namespace Spartacus.Generator.Terms
 {
-    public interface ITermCalculator
+    public interface ITerm
     {
         void Calculate(List<Example> examples);
     }

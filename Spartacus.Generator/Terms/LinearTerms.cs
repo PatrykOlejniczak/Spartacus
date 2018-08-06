@@ -5,7 +5,7 @@ using Spartacus.Common.Types;
 
 namespace Spartacus.Generator.Terms
 {
-    public class LinearTerms : ITermCalculator
+    public class LinearTerms : ITerm
     {
         public void Calculate(List<Example> examples)
         {

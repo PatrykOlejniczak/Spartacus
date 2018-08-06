@@ -1,7 +1,7 @@
-﻿using System;
-using Spartacus.Common;
+﻿using Spartacus.Common;
 using Spartacus.Common.Constraints;
 using Spartacus.Common.Types;
+using System;
 
 namespace Spartacus.Benchmarks.Defined
 {

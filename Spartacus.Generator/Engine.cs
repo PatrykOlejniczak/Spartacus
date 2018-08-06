@@ -6,15 +6,15 @@ using System.Collections.Generic;
 
 namespace Spartacus.Generator
 {
-    public class Engine : IEngine
+    public class Engine
     {
-        private readonly List<ITermCalculator> terms;
+        private readonly List<ITerm> terms;
         private readonly IRandomizer randomizer;
 
-        public Engine(IRandomizer randomizer, List<ITermCalculator> terms = null)
+        public Engine(IRandomizer randomizer, List<ITerm> terms = null)
         {
             this.randomizer = randomizer;
-            this.terms = terms ?? new List<ITermCalculator>();
+            this.terms = terms ?? new List<ITerm>();
         }
 
         public List<Example> Generate(GenerateParameter parameters)

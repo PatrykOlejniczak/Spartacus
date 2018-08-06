@@ -2,13 +2,14 @@
 using Spartacus.Benchmarks;
 using Spartacus.Benchmarks.Defined;
 using Spartacus.Generator;
-using System;
-using System.Collections.Generic;
-using System.IO;
 using Spartacus.Generator.Randoms;
 using Spartacus.Generator.Storage;
 using Spartacus.Generator.Terms;
 using Spartacus.Settings;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using Spartacus.Generator.Storage.Excel;
 
 namespace Spartacus
 {
@@ -26,7 +27,9 @@ namespace Spartacus
 
         private static int Run(Benchmark benchmark, BaseGeneratorSettings baseGeneratorSettings)
         {
-            var extensions = new List<ITermCalculator>();
+            var parameters = new GenerateParameter(benchmark, baseGeneratorSettings.Points,
+                                                   baseGeneratorSettings.MinimumFeasibles, baseGeneratorSettings.MaximumFeasibles);
+            var extensions = new List<ITerm>();
 
             if (baseGeneratorSettings.LinearExtension)
             {
@@ -38,20 +41,18 @@ namespace Spartacus
                 extensions.Add(new QuadraticTerms());
             }
 
+            var dataToSave = new List<Sheet>();
             var engine = new Engine(new MersenneTwisterWrapper(baseGeneratorSettings.Seed), extensions);
-
-            var dataToSave = new List<SheetToSave>();
             foreach (var sheet in baseGeneratorSettings.Sheets)
             {
-                dataToSave.Add(new SheetToSave()
+                dataToSave.Add(new Sheet()
                 {
-                    SheetName = sheet,
-                    Examples = engine.Generate(new GenerateParameter(benchmark, baseGeneratorSettings.Points, baseGeneratorSettings.MinimumFeasibles, baseGeneratorSettings.MaximumFeasibles))
+                    Name = sheet,
+                    Data = engine.Generate(parameters)
                 });
             }
 
             var writer = new ExcelStorage(baseGeneratorSettings.OutputPath);
-
             writer.Save(dataToSave, baseGeneratorSettings.Output[0]);
 
             Console.WriteLine($"Generated! {Path.Combine(baseGeneratorSettings.OutputPath, baseGeneratorSettings.Output[0] + ".xlsx")}");

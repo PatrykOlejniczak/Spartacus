@@ -5,7 +5,7 @@ using Spartacus.Common.Types;
 
 namespace Spartacus.Generator.Terms
 {
-    public class QuadraticTerms : ITermCalculator
+    public class QuadraticTerms : ITerm
     {
         public void Calculate(List<Example> examples)
         {

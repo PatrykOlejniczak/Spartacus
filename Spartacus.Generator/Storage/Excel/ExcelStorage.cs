@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using OfficeOpenXml;
 
-namespace Spartacus.Generator.Storage
+namespace Spartacus.Generator.Storage.Excel
 {
     public class ExcelStorage
     {
@@ -20,7 +20,7 @@ namespace Spartacus.Generator.Storage
             this.directoryPath = directoryPath;
         }
 
-        public void Save(IEnumerable<SheetToSave> sheets, string fileName)
+        public void Save(IEnumerable<Sheet> sheets, string fileName)
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
@@ -37,13 +37,13 @@ namespace Spartacus.Generator.Storage
                 foreach (var sheet in sheets)
                 {
                     var headerRow = new List<string>();
-                    headerRow.AddRange(sheet.Examples.First().Variables.Select(v => v.Schema.Symbol));
+                    headerRow.AddRange(sheet.Data.First().Variables.Select(v => v.Schema.Symbol));
                     headerRow.Add("Y");
 
-                    excel.Workbook.Worksheets.Add(sheet.SheetName);
+                    excel.Workbook.Worksheets.Add(sheet.Name);
 
-                    var csv = sheet.Examples.Select(example => example.ToString()).ToArray();
-                    var worksheet = excel.Workbook.Worksheets[sheet.SheetName];
+                    var csv = sheet.Data.Select(example => example.ToString()).ToArray();
+                    var worksheet = excel.Workbook.Worksheets[sheet.Name];
                     worksheet.Cells.LoadFromArrays(new [] { headerRow.ToArray() });
 
                     for (int i = 0; i < csv.Count(); i++)
