@@ -35,7 +35,6 @@ namespace Spartacus.UnitTests
         public void Constructor_WrongPointConfiguration()
         {
             var benchmark = new BenchmarkMock();
-            var points = 1;
 
             Assert.Throws<ArgumentException>(() => new GenerateParameter(benchmark, 0));
         }

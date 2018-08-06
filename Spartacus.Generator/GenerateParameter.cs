@@ -2,6 +2,7 @@
 using Spartacus.Generator.Terms;
 using System;
 using System.Collections.Generic;
+using Spartacus.Generator.Randoms;
 
 namespace Spartacus.Generator
 {
@@ -14,8 +15,9 @@ namespace Spartacus.Generator
         public int? MaximumFeasiblesExamples { get; }
 
         public List<ITerm> Terms { get; }
+        public IRandomizer Randomizer { get; }
 
-        public GenerateParameter(Benchmark benchmark, int examples, int? minimumFeasibleExamples = null, int? maximumFeasiblesExamples = null, List<ITerm> terms = null)
+        public GenerateParameter(Benchmark benchmark, int examples, int? minimumFeasibleExamples = null, int? maximumFeasiblesExamples = null, List<ITerm> terms = null, IRandomizer randomizer = null)
         {
             if (examples <= 0)
             {
@@ -42,11 +44,12 @@ namespace Spartacus.Generator
             }
 
             Benchmark = benchmark ?? throw new ArgumentNullException(nameof(benchmark));
-            Examples = examples;
+            Examples = examples;            
             MinimumFeasibleExamples = minimumFeasibleExamples;
             MaximumFeasiblesExamples = maximumFeasiblesExamples;
             
             Terms = terms ?? new List<ITerm>();
+            Randomizer = randomizer ?? new MersenneTwisterWrapper();
         }
     }
 }

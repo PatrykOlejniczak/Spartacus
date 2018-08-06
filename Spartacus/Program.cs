@@ -42,10 +42,11 @@ namespace Spartacus
                                                    baseGeneratorSettings.Points,
                                                    baseGeneratorSettings.MinimumFeasibles,
                                                    baseGeneratorSettings.MaximumFeasibles,
-                                                   extensions);
+                                                   extensions,
+                                                   new MersenneTwisterWrapper(baseGeneratorSettings.Seed));
 
             var dataToSave = new List<Sheet>();
-            var engine = new Engine(new MersenneTwisterWrapper(baseGeneratorSettings.Seed), parameters);
+            var engine = new Engine(parameters);
             foreach (var sheet in baseGeneratorSettings.Sheets)
             {
                 dataToSave.Add(new Sheet()

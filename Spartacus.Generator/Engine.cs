@@ -7,13 +7,10 @@ namespace Spartacus.Generator
 {
     public class Engine
     {
-        private GenerateParameter parameters;
+        private readonly GenerateParameter parameters;        
 
-        private readonly IRandomizer randomizer;
-
-        public Engine(IRandomizer randomizer, GenerateParameter parameters)
+        public Engine(GenerateParameter parameters)
         {
-            this.randomizer = randomizer;
             this.parameters = parameters;
         }
 
@@ -27,7 +24,7 @@ namespace Spartacus.Generator
 
                 foreach (var schema in parameters.Benchmark.VariableSchemas)
                 {
-                    exampleVariables.Add(new Variable(schema, randomizer.NextDouble(schema.MinValue, schema.MaxValue)));
+                    exampleVariables.Add(new Variable(schema, parameters.Randomizer.NextDouble(schema.MinValue, schema.MaxValue)));
                 }
 
                 var proposition = new Example(exampleVariables);
