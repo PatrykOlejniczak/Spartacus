@@ -27,22 +27,10 @@ namespace Spartacus.Generator
                 }
 
                 var proposition = new Example(exampleVariables);
-
                 proposition.Validate(parameters.Benchmark.Constraints);
-                if (proposition.ExampleType == ExampleType.Infeasible
-                        && examples.Count < parameters.MinimumFeasibleExamples)
-                {
-                    continue;
-                }
 
-                if (proposition.ExampleType == ExampleType.Feasible
-                    && parameters.MaximumFeasiblesExamples.HasValue
-                    && examples.Count >= parameters.MaximumFeasiblesExamples)
-                {
-                    continue;
-                }
-
-                examples.Add(proposition);
+                if (IsCorrect(proposition, examples.Count))
+                    examples.Add(proposition);
             }
 
             foreach (var term in parameters.Terms)
@@ -51,6 +39,24 @@ namespace Spartacus.Generator
             }
 
             return examples;
+        }
+
+        private bool IsCorrect(Example proposition, int generated)
+        {
+            if (proposition.ExampleType == ExampleType.Infeasible
+                && generated < parameters.MinimumFeasibleExamples)
+            {
+                return false;
+            }
+
+            if (proposition.ExampleType == ExampleType.Feasible
+                && parameters.MaximumFeasiblesExamples.HasValue
+                && generated >= parameters.MaximumFeasiblesExamples)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
