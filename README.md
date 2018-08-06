@@ -83,9 +83,10 @@ Table: Parameters only for Ball
 <br />
 
 ## How to use
-Compile and run *dotnet Sparatus.dll*.
+Run [build.cmd](scripts/build.cmd). 
 
-### Sample
+### Samples
+Visualization for datasets generated from samples: [samples_cube.bat](scripts/samples_cube.bat), [samples_ball.bat](scripts/samples_ball.bat), [samples_simplex.bat](scripts/samples_simplex.bat).
 
 ![](/docs/images/sample_definition.JPG)
 
