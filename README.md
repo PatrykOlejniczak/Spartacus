@@ -1,12 +1,10 @@
-**Still working on it, IT NOT STABLE, NOT USE IN COMMERCIAL** (Info: 07.2018)
-
 # Spartcus
 
 Spartacus program to generate datasets according to given constraints. 
 Output sets in the form of spreadsheets can be used with machine learning algorithms (mostly mathematican programming models). Points are drawn using the [MersenneTwister](https://github.com/akiotakahashi/MersenneTwister) algorithm. The project is written using .Net Core and .Net Standard.
 
 ## Sample output
-The sets are in the form of a list of points in the N dimensional space (X1-XN) together with a column representing the result (Y) that defines whether the point meets the restrictions.
+The sets are in the form of a list of points in the N-dimensional space (X1-XN) together with a column representing the result (Y) that defines whether the point meets the restrictions.
 
 | X1 | X2 | X3 | Y  |
 |:--:|:--:|:--:|:--:|
@@ -15,6 +13,22 @@ The sets are in the form of a list of points in the N dimensional space (X1-XN) 
 | 2  | -8 | 12 | 0 |
 
 Table: Sample output xlsx datasheet
+
+| X1 | X2 | X3 | X1+X2 | X1+X3 | X2+X3 | Y  |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| 10 | 15 | 12 | 25 | 22 | 27 | 0 |
+| 0  | 8  | 6  | 8  | 6  | 14 | 1 |
+| 2  | -8 | 12 | -6 | 14 | 4  | 0 |
+
+Table: Sample output xlsx datasheet with enable linear extension (--linear true)
+
+| X1 | X2 | X3 | X1\*X1 | X1\*X2 | X1\*X3 | X2\*X2 | X2\*X3 | X3\*X3 | Y  |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| 10 | 15 | 12 | 100 | 150 | 120 | 225 | 180 | 144 | 0 |
+| 0  | 8  | 6  | 0 | 0  | 0  | 64 | 48 | 36 | 1 |
+| 2  | -8 | 12 | 4 |-16 | 24 | 64 | 96  | 144 | 0 |
+
+Table: Sample output xlsx datasheet with enable quadratic extension (--quadratic true)
 
 ## Available predefined benchmarks:
 + Cube
@@ -35,8 +49,8 @@ Image: Benchmark formulated as MP models
 | --outputpath  | Path to storage generated data| --outputpath C:\Desktop | Yes |
 | --output  | File name | --output cube2n | Yes |
 | --sheets  | List of sheets in generated file | --sheets dataset1 dataset2 | Yes |
-| --linearextension  | Generate additional columns with linear dependencies | --l true | No |
-| --quadraticextension  | Generate additional columns with quadratic dependencies | --q false | No |
+| --linear  | Generate additional columns with linear dependencies | --l true | No |
+| --quadratic  | Generate additional columns with quadratic dependencies | --q false | No |
 | --seed  | Seed for MersenneTwister | --seed 123 | No |
 
 Table: Common parameters for all benchamarks
@@ -77,3 +91,7 @@ Image: Visualization created dataset
 
 ## Contribution
 Feel free to make pull request and add something or just create issue with question / suggestion for improvement / report bug.
+
+
+## Future plans
+Add posibility toeasy define custom benchmarks.
