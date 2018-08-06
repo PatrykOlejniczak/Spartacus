@@ -45,7 +45,7 @@ namespace Spartacus.Settings
         [Option("elements", Required = false, Default = 1, HelpText = "Elements number.")]
         public int Elements { get; }
 
-        protected BaseGeneratorSettings(double constant, int dimension, int points, int minimumFeasibles, int maximumFeasibles, string outputPath, IEnumerable<string> output, IEnumerable<string> sheets, bool linearExtension, bool quadraticExtension, int seed, int elements)
+        protected BaseGeneratorSettings(double constant, int dimension, int points, int? minimumFeasibles, int? maximumFeasibles, string outputPath, IEnumerable<string> output, IEnumerable<string> sheets, bool linearExtension, bool quadraticExtension, int seed, int elements)
         {
             Benchmark = this.GetType().Name.Replace("Settings", "");
 
