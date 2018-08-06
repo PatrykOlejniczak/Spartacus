@@ -12,7 +12,10 @@ The sets are in the form of a list of points in the N-dimensional space (X1-XN) 
 | 0  | 8  | 6  | 1 |
 | 2  | -8 | 12 | 0 |
 
-Table: Sample output xlsx datasheet
+Table: Sample output xlsx datasheet without extensions
+
+<br />
+<br />
 
 | X1 | X2 | X3 | X1+X2 | X1+X3 | X2+X3 | Y  |
 |:--:|:--:|:--:|:--:|:--:|:--:|:--:|
@@ -21,6 +24,9 @@ Table: Sample output xlsx datasheet
 | 2  | -8 | 12 | -6 | 14 | 4  | 0 |
 
 Table: Sample output xlsx datasheet with enable linear extension (--linear true)
+
+<br />
+<br />
 
 | X1 | X2 | X3 | X1\*X1 | X1\*X2 | X1\*X3 | X2\*X2 | X2\*X3 | X3\*X3 | Y  |
 |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
