@@ -1,5 +1,7 @@
-﻿using System;
-using Spartacus.Benchmarks;
+﻿using Spartacus.Benchmarks;
+using Spartacus.Generator.Terms;
+using System;
+using System.Collections.Generic;
 
 namespace Spartacus.Generator
 {
@@ -11,8 +13,15 @@ namespace Spartacus.Generator
         public int? MinimumFeasibleExamples { get; }
         public int? MaximumFeasiblesExamples { get; }
 
-        public GenerateParameter(Benchmark benchmark, int examples, int? minimumFeasibleExamples, int? maximumFeasiblesExamples)
+        public List<ITerm> Terms { get; }
+
+        public GenerateParameter(Benchmark benchmark, int examples, int? minimumFeasibleExamples = null, int? maximumFeasiblesExamples = null, List<ITerm> terms = null)
         {
+            if (examples <= 0)
+            {
+                throw new ArgumentException(nameof(examples));
+            }
+
             if (minimumFeasibleExamples.HasValue
                     && minimumFeasibleExamples.Value <= 0)
             {
@@ -25,17 +34,19 @@ namespace Spartacus.Generator
                 throw new ArgumentException(nameof(maximumFeasiblesExamples));
             }
 
-            if (maximumFeasiblesExamples.HasValue && minimumFeasibleExamples.HasValue
-                                                  &&
+            if (maximumFeasiblesExamples.HasValue &&
+                minimumFeasibleExamples.HasValue &&
                 maximumFeasiblesExamples.Value < minimumFeasibleExamples.Value)
             {
                 throw new ArgumentException();
             }
 
-            Benchmark = benchmark;
+            Benchmark = benchmark ?? throw new ArgumentNullException(nameof(benchmark));
             Examples = examples;
             MinimumFeasibleExamples = minimumFeasibleExamples;
             MaximumFeasiblesExamples = maximumFeasiblesExamples;
+            
+            Terms = terms ?? new List<ITerm>();
         }
     }
 }

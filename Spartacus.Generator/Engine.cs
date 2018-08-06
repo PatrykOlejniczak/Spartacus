@@ -1,23 +1,23 @@
 ﻿using Spartacus.Common;
 using Spartacus.Common.Types;
 using Spartacus.Generator.Randoms;
-using Spartacus.Generator.Terms;
 using System.Collections.Generic;
 
 namespace Spartacus.Generator
 {
     public class Engine
     {
-        private readonly List<ITerm> terms;
+        private GenerateParameter parameters;
+
         private readonly IRandomizer randomizer;
 
-        public Engine(IRandomizer randomizer, List<ITerm> terms = null)
+        public Engine(IRandomizer randomizer, GenerateParameter parameters)
         {
             this.randomizer = randomizer;
-            this.terms = terms ?? new List<ITerm>();
+            this.parameters = parameters;
         }
 
-        public List<Example> Generate(GenerateParameter parameters)
+        public List<Example> Generate()
         {
             var examples = new List<Example>();
 
@@ -49,7 +49,7 @@ namespace Spartacus.Generator
                 examples.Add(proposition);
             }
 
-            foreach (var term in terms)
+            foreach (var term in parameters.Terms)
             {
                 term.Calculate(examples);
             }

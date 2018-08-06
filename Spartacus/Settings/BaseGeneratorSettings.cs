@@ -33,10 +33,10 @@ namespace Spartacus.Settings
         [Option("sheets", Required = false, HelpText = "List with names of sheets in each result file. Default is benchmark name.")]
         public List<string> Sheets { get; }
 
-        [Option('l', "linearextension", Required = false, Default = false, HelpText = "Sets whether to generate linear dependencies between variables.")]
+        [Option("linear", Required = false, Default = false, HelpText = "Sets whether to generate linear dependencies between variables.")]
         public bool LinearExtension { get; }
 
-        [Option('q', "quadraticextension", Required = false, Default = false, HelpText = "Sets whether to generate quadratic dependencies between variables.")]
+        [Option("quadratic", Required = false, Default = false, HelpText = "Sets whether to generate quadratic dependencies between variables.")]
         public bool QuadraticExtension { get; }
 
         [Option("seed", Required = false, Default = 0, HelpText = "Seed number.")]

@@ -3,13 +3,12 @@ using Spartacus.Benchmarks;
 using Spartacus.Benchmarks.Defined;
 using Spartacus.Generator;
 using Spartacus.Generator.Randoms;
-using Spartacus.Generator.Storage;
+using Spartacus.Generator.Storage.Excel;
 using Spartacus.Generator.Terms;
 using Spartacus.Settings;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Spartacus.Generator.Storage.Excel;
 
 namespace Spartacus
 {
@@ -27,8 +26,6 @@ namespace Spartacus
 
         private static int Run(Benchmark benchmark, BaseGeneratorSettings baseGeneratorSettings)
         {
-            var parameters = new GenerateParameter(benchmark, baseGeneratorSettings.Points,
-                                                   baseGeneratorSettings.MinimumFeasibles, baseGeneratorSettings.MaximumFeasibles);
             var extensions = new List<ITerm>();
 
             if (baseGeneratorSettings.LinearExtension)
@@ -41,14 +38,20 @@ namespace Spartacus
                 extensions.Add(new QuadraticTerms());
             }
 
+            var parameters = new GenerateParameter(benchmark,
+                                                   baseGeneratorSettings.Points,
+                                                   baseGeneratorSettings.MinimumFeasibles,
+                                                   baseGeneratorSettings.MaximumFeasibles,
+                                                   extensions);
+
             var dataToSave = new List<Sheet>();
-            var engine = new Engine(new MersenneTwisterWrapper(baseGeneratorSettings.Seed), extensions);
+            var engine = new Engine(new MersenneTwisterWrapper(baseGeneratorSettings.Seed), parameters);
             foreach (var sheet in baseGeneratorSettings.Sheets)
             {
                 dataToSave.Add(new Sheet()
                 {
                     Name = sheet,
-                    Data = engine.Generate(parameters)
+                    Data = engine.Generate()
                 });
             }
 
