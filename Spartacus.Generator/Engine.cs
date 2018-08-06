@@ -39,7 +39,7 @@ namespace Spartacus.Generator
                     continue;
                 }
 
-                if (proposition.ExampleType == ExampleType.Infeasible
+                if (proposition.ExampleType == ExampleType.Feasible
                     && parameters.MaximumFeasiblesExamples.HasValue
                     && examples.Count >= parameters.MaximumFeasiblesExamples)
                 {
