@@ -1,0 +1,1 @@
+dotnet test %~dp0..\Spartacus.UnitTests\Spartacus.UnitTests.csproj

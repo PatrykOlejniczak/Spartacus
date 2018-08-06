@@ -18,7 +18,7 @@ namespace Spartacus.Settings
         [Option('p', "points", Required = true, HelpText = "Number of points to be drawn.")]
         public int Points { get; }
 
-        [Option("minimumFeasibles", Required = false, Default = 0, HelpText = "Determinate minimum feasible states in every sheet.")]
+        [Option("minimumFeasibles", Required = false, Default = null, HelpText = "Determinate minimum feasible states in every sheet.")]
         public int? MinimumFeasibles { get; }
 
         [Option("maximumFeasibles", Required = false, Default = null, HelpText = "Determinate maximum feasible states in every sheet.")]

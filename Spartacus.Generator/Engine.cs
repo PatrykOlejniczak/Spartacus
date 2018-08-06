@@ -28,7 +28,6 @@ namespace Spartacus.Generator
 
                 var proposition = new Example(exampleVariables);
                 proposition.Validate(parameters.Benchmark.Constraints);
-
                 if (IsCorrect(proposition, examples.Count))
                     examples.Add(proposition);
             }
