@@ -40,6 +40,7 @@ namespace Spartacus.Generator
                 }
 
                 if (proposition.ExampleType == ExampleType.Infeasible
+                    && parameters.MaximumFeasiblesExamples.HasValue
                     && examples.Count >= parameters.MaximumFeasiblesExamples)
                 {
                     continue;

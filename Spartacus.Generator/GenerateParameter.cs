@@ -1,5 +1,5 @@
-﻿using Spartacus.Benchmarks;
-using System;
+﻿using System;
+using Spartacus.Benchmarks;
 
 namespace Spartacus.Generator
 {
@@ -8,14 +8,26 @@ namespace Spartacus.Generator
         public Benchmark Benchmark { get; }
 
         public int Examples { get; }
-        public int MinimumFeasibleExamples { get; }
-        public int MaximumFeasiblesExamples { get; }
+        public int? MinimumFeasibleExamples { get; }
+        public int? MaximumFeasiblesExamples { get; }
 
-        public GenerateParameter(Benchmark benchmark, int examples, int minimumFeasibleExamples, int maximumFeasiblesExamples)
+        public GenerateParameter(Benchmark benchmark, int examples, int? minimumFeasibleExamples, int? maximumFeasiblesExamples)
         {
-            if (minimumFeasibleExamples > maximumFeasiblesExamples
-                || minimumFeasibleExamples <= 0
-                || maximumFeasiblesExamples <= 0)
+            if (minimumFeasibleExamples.HasValue
+                    && minimumFeasibleExamples.Value <= 0)
+            {
+                throw new ArgumentException(nameof(minimumFeasibleExamples));
+            }
+
+            if (maximumFeasiblesExamples.HasValue
+                    && maximumFeasiblesExamples.Value <= 0)
+            {
+                throw new ArgumentException(nameof(maximumFeasiblesExamples));
+            }
+
+            if (maximumFeasiblesExamples.HasValue && minimumFeasibleExamples.HasValue
+                                                  &&
+                maximumFeasiblesExamples.Value < minimumFeasibleExamples.Value)
             {
                 throw new ArgumentException();
             }

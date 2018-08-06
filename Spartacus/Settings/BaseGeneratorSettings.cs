@@ -19,10 +19,10 @@ namespace Spartacus.Settings
         public int Points { get; }
 
         [Option("minimumFeasibles", Required = false, Default = 0, HelpText = "Determinate minimum feasible states in every sheet.")]
-        public int MinimumFeasibles { get; }
+        public int? MinimumFeasibles { get; }
 
-        [Option("maximumFeasibles", Required = false, Default = Int32.MaxValue, HelpText = "Determinate maximum feasible states in every sheet.")]
-        public int MaximumFeasibles { get; }
+        [Option("maximumFeasibles", Required = false, Default = null, HelpText = "Determinate maximum feasible states in every sheet.")]
+        public int? MaximumFeasibles { get; }
 
         [Option("outputpath", Required = false, HelpText = "Path to the place where the resulting files are saved. Default is user profile.")]
         public string OutputPath { get; }
