@@ -1,9 +1,9 @@
-﻿using CommandLine;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CommandLine;
 
-namespace Spartacus
+namespace Spartacus.Settings
 {
     public abstract class BaseGeneratorSettings
     {
@@ -20,6 +20,9 @@ namespace Spartacus
 
         [Option("minimumFeasibles", Required = false, Default = 0, HelpText = "Determinate minimum feasible states in every sheet.")]
         public int MinimumFeasibles { get; }
+
+        [Option("maximumFeasibles", Required = false, Default = Int32.MaxValue, HelpText = "Determinate maximum feasible states in every sheet.")]
+        public int MaximumFeasibles { get; }
 
         [Option("outputpath", Required = false, HelpText = "Path to the place where the resulting files are saved. Default is user profile.")]
         public string OutputPath { get; }
@@ -42,7 +45,7 @@ namespace Spartacus
         [Option("elements", Required = false, Default = 1, HelpText = "Elements number.")]
         public int Elements { get; }
 
-        protected BaseGeneratorSettings(double constant, int dimension, int points, int minimumFeasibles, string outputPath, IEnumerable<string> output, IEnumerable<string> sheets, bool linearExtension, bool quadraticExtension, int seed, int elements)
+        protected BaseGeneratorSettings(double constant, int dimension, int points, int minimumFeasibles, int maximumFeasibles, string outputPath, IEnumerable<string> output, IEnumerable<string> sheets, bool linearExtension, bool quadraticExtension, int seed, int elements)
         {
             Benchmark = this.GetType().Name.Replace("Settings", "");
 
@@ -56,7 +59,7 @@ namespace Spartacus
             Seed = seed;
             Elements = elements;
             MinimumFeasibles = minimumFeasibles;
-
+            MaximumFeasibles = maximumFeasibles;
             OutputPath = outputPath ?? Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 
             Output = output != null ? output.ToList() : new List<string>() { $"{Benchmark}_{dimension}n_{elements}k_{seed}" };

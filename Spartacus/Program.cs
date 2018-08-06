@@ -8,6 +8,7 @@ using System.IO;
 using Spartacus.Generator.Randoms;
 using Spartacus.Generator.Storage;
 using Spartacus.Generator.Terms;
+using Spartacus.Settings;
 
 namespace Spartacus
 {
@@ -45,7 +46,7 @@ namespace Spartacus
                 dataToSave.Add(new SheetToSave()
                 {
                     SheetName = sheet,
-                    Examples = engine.Generate(new GenerateParameter(benchmark, baseGeneratorSettings.Points, baseGeneratorSettings.MinimumFeasibles))
+                    Examples = engine.Generate(new GenerateParameter(benchmark, baseGeneratorSettings.Points, baseGeneratorSettings.MinimumFeasibles, baseGeneratorSettings.MaximumFeasibles))
                 });
             }
 

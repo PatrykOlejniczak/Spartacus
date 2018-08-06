@@ -1,8 +1,8 @@
 ﻿using Spartacus.Common;
 using Spartacus.Common.Types;
-using System.Collections.Generic;
 using Spartacus.Generator.Randoms;
 using Spartacus.Generator.Terms;
+using System.Collections.Generic;
 
 namespace Spartacus.Generator
 {
@@ -35,6 +35,12 @@ namespace Spartacus.Generator
                 proposition.Validate(parameters.Benchmark.Constraints);
                 if (proposition.ExampleType == ExampleType.Infeasible
                         && examples.Count < parameters.MinimumFeasibleExamples)
+                {
+                    continue;
+                }
+
+                if (proposition.ExampleType == ExampleType.Infeasible
+                    && examples.Count >= parameters.MaximumFeasiblesExamples)
                 {
                     continue;
                 }
