@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Spartacus.Common;
+﻿using Spartacus.Common;
 using Spartacus.Common.Types;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Spartacus.Generator.Terms
 {

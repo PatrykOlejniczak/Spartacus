@@ -1,8 +1,8 @@
 ﻿using Spartacus.Benchmarks;
+using Spartacus.Generator.Randoms;
 using Spartacus.Generator.Terms;
 using System;
 using System.Collections.Generic;
-using Spartacus.Generator.Randoms;
 
 namespace Spartacus.Generator
 {
@@ -25,13 +25,15 @@ namespace Spartacus.Generator
             }
 
             if (minimumFeasibleExamples.HasValue
-                    && minimumFeasibleExamples.Value <= 0)
+                    && (minimumFeasibleExamples.Value <= 0
+                    || minimumFeasibleExamples.Value > examples))
             {
                 throw new ArgumentException(nameof(minimumFeasibleExamples));
             }
 
             if (maximumFeasiblesExamples.HasValue
-                    && maximumFeasiblesExamples.Value <= 0)
+                    && (maximumFeasiblesExamples.Value <= 0
+                    || maximumFeasiblesExamples.Value > examples))
             {
                 throw new ArgumentException(nameof(maximumFeasiblesExamples));
             }

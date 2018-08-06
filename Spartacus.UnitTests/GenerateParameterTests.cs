@@ -15,10 +15,12 @@ namespace Spartacus.UnitTests
         [InlineData(0, 1)]
         [InlineData(1, 0)]
         [InlineData(2, 1)]
+        [InlineData(6, 1)]
+        [InlineData(2, 6)]
         public void Constructor_WrongFeasiblesConfiguration(int minimum, int maximum)
         {
             var benchmark = new BenchmarkMock();
-            var points = 1;
+            var points = 5;
 
             Assert.Throws<ArgumentException>(() => new GenerateParameter(benchmark, points, minimum, maximum));
         }
