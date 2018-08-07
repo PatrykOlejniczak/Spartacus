@@ -5,13 +5,13 @@ using System.Linq;
 
 namespace Spartacus.Common.Constraints
 {
-    public class LinearConstraint : BaseConstraint
+    public class LinearTotalConstraint : BaseConstraint
     {
-        public LinearConstraint(double constant, ComparisonKind comparisonKind)
+        public LinearTotalConstraint(double constant, ComparisonKind comparisonKind)
             : base(constant, comparisonKind)
         { }
 
-        public LinearConstraint(double constant, ComparisonKind comparisonKind, int groupId)
+        public LinearTotalConstraint(double constant, ComparisonKind comparisonKind, int groupId)
             : base(constant, comparisonKind, groupId)
         { }
 

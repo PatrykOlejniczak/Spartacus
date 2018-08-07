@@ -14,11 +14,11 @@ namespace Spartacus.Benchmarks.Defined
 
                 for (var module = 1; module <= modules; module++)
                 {
-                    var minConstraint = new LinearConstraint(index * module, ComparisonKind.GreaterOrEqual, module);
+                    var minConstraint = new LinearTotalConstraint(index * module, ComparisonKind.GreaterOrEqual, module);
                     minConstraint.Modificators.Add(SafeVariableSchemas[index - 1], new Modificator());
                     SafeConstraints.Add(minConstraint);
 
-                    var maxConstraint = new LinearConstraint(index * module + index * dimension, ComparisonKind.LessOrEqual, module);
+                    var maxConstraint = new LinearTotalConstraint(index * module + index * dimension, ComparisonKind.LessOrEqual, module);
                     maxConstraint.Modificators.Add(SafeVariableSchemas[index - 1], new Modificator());
                     SafeConstraints.Add(maxConstraint);
                 }

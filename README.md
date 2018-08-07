@@ -50,7 +50,7 @@ Image: Benchmark formulated as MP models
 | Paramater | Description | Sample used | Required |
 |:---------:|:-----------:|:-----------:|:--------:|
 | --points  | Number of points to generate | --points 5000 | Yes |
-| --outputpath  | Path to storage generated data | --outputpath C:\Desktop | Yes |
+| --outputpath  | Path to storage generated data | --outputpath C:\Desktop | No (def: UserDirectory) |
 | --output  | File name (without extension) | --output cube2n | Yes |
 | --sheets  | List of sheets in generated file | --sheets dataset1 dataset2 | No |
 | --linear  | Generate additional columns with linear dependencies | --l true | No |
@@ -64,8 +64,8 @@ Table: Common parameters for all benchamarks
 
 | Paramater | Description | Sample used | Required |
 |:---------:|:-----------:|:-----------:|:--------:|
-|--constant|Parameter used to bound variables (d in formulas)|--constant 5| Yes |
-|--dimensions|Number of dimensions|--diemnsions 2|Yes|
+|--constant|Parameter used to bound variables (d in formulas)|--constant 5| No (def: 2.7) |
+|--dimensions|Number of dimensions|--diemnsions 2|No (def: 2) |
 
 Table: Parameters only for Cube and Simplex
 
@@ -74,12 +74,11 @@ Table: Parameters only for Cube and Simplex
 
 | Paramater | Description | Sample used | Required |
 |:---------:|:-----------:|:-----------:|:--------:|
-|--radius|Radius of ball|--radius 5| Yes |
+|--radius|Radius of ball|--radius 5| No (def: 2.7) |
 |--center|Center of ball (affects the number of dimensions -> X1, X2, X3 etc) |--center 1 2 3 |Yes|
 
 Table: Parameters only for Ball
 
-<br />
 <br />
 
 ## How to use
@@ -93,6 +92,18 @@ Visualization for datasets generated from samples: [samples_cube.bat](scripts/sa
 |![](/docs/images/cube_sample_1_symbol.JPG)|![](/docs/images/cube_sample_2_symbol.JPG)|![](/docs/images/cube_sample_3_symbol.JPG)|
 |:---------:|:-----------:|:-----------:|
 |![](/docs/images/cube_sample_1.JPG)|![](/docs/images/cube_sample_2.JPG)|![](/docs/images/cube_sample_3.JPG)|
+
+<br />
+
+|![](/docs/images/simplex_sample_1_symbol.JPG)|![](/docs/images/simplex_sample_2_symbol.JPG)|![](/docs/images/simplex_sample_3_symbol.JPG)|
+|:---------:|:-----------:|:-----------:|
+|![](/docs/images/simplex_sample_1.JPG)|![](/docs/images/simplex_sample_2.JPG)|![](/docs/images/simplex_sample_3.JPG)|
+
+<br />
+
+|![](/docs/images/ball_sample_1_symbol.JPG)|![](/docs/images/ball_sample_2_symbol.JPG)|![](/docs/images/ball_sample_3_symbol.JPG)|
+|:---------:|:-----------:|:-----------:|
+|![](/docs/images/ball_sample_1.JPG)|![](/docs/images/ball_sample_2.JPG)|![](/docs/images/ball_sample_3.JPG)|
 
 ## Contribution
 Feel free to make pull request and add something or just create issue with question / suggestion for improvement / report bug.
