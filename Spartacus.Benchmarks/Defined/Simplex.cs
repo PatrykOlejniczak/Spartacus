@@ -7,12 +7,11 @@ namespace Spartacus.Benchmarks.Defined
 {
     public class Simplex : Benchmark
     {
+        public static readonly double Tangens = Math.Tan(Math.PI / 12);
+        public static readonly double Cotangens = 1.0 / Tangens;
+
         public Simplex(int dimension, double constant, int modules = 1)
         {
-            double tangens = Math.Tan(Math.PI / 12);
-            double cotangens = 1.0 / tangens;
-
-
             for (var index = 1; index <= dimension; index++)
             {
                 SafeVariableSchemas.Add(new VariableSchema("X" + index,
@@ -29,17 +28,22 @@ namespace Spartacus.Benchmarks.Defined
                 }
                 SafeConstraints.Add(firstConstraint);
 
-                for (int i = 0; i < dimension - 1; i++)
+                for (int i = 0; i < dimension; i++)
                 {
-                    var secondConstraint = new LinearTotalConstraint(2 * module - 2, ComparisonKind.GreaterOrEqual, module);
-                    secondConstraint.Modificators.Add(SafeVariableSchemas[i], new Modificator(cotangens, 0));
-                    secondConstraint.Modificators.Add(SafeVariableSchemas[i + 1], new Modificator((-1) * tangens, 0));
-                    SafeConstraints.Add(secondConstraint);
+                    for (int j = i + 1; j < dimension; j++)
+                    {
+                        var secondConstraint =
+                                new LinearTotalConstraint(2 * module - 2, ComparisonKind.GreaterOrEqual, module);
+                        secondConstraint.Modificators.Add(SafeVariableSchemas[i], new Modificator(Cotangens, 0));
+                        secondConstraint.Modificators.Add(SafeVariableSchemas[j], new Modificator((-1) * Tangens, 0));
+                        SafeConstraints.Add(secondConstraint);
 
-                    var thirdConstraint = new LinearTotalConstraint(2 * module - 2, ComparisonKind.GreaterOrEqual, module);
-                    thirdConstraint.Modificators.Add(SafeVariableSchemas[i + 1], new Modificator(cotangens, 0));
-                    thirdConstraint.Modificators.Add(SafeVariableSchemas[i], new Modificator((-1) * tangens, 0));
-                    SafeConstraints.Add(thirdConstraint);
+                        var thirdConstraint =
+                                new LinearTotalConstraint(2 * module - 2, ComparisonKind.GreaterOrEqual, module);
+                        thirdConstraint.Modificators.Add(SafeVariableSchemas[j], new Modificator(Cotangens, 0));
+                        thirdConstraint.Modificators.Add(SafeVariableSchemas[i], new Modificator((-1) * Tangens, 0));
+                        SafeConstraints.Add(thirdConstraint);
+                    }
                 }
             }
         }
