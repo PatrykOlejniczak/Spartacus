@@ -29,5 +29,23 @@ namespace Spartacus.Common.Constraints
 
             return ComparisonKind.Verify(leftSide, Constant);
         }
+
+        public override string ToString()
+        {
+            var str = "";
+            foreach (var modificator in Modificators)
+            {
+                if (Math.Abs(modificator.Value.Shift) > 0.01)
+                {
+                    str += $" + {modificator.Value.Weight} * ({modificator.Key.Symbol} + {modificator.Value.Shift})^2";
+                }
+                else
+                {
+                    str += $" + {modificator.Value.Weight} * {modificator.Key.Symbol}^2";
+                }
+            }
+
+            return $"{str.Substring(3)} {ComparisonKind.GetDescription()} {Constant}";
+        }
     }
 }

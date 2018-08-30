@@ -46,7 +46,8 @@ namespace Spartacus.Generator
             }
 
             Benchmark = benchmark ?? throw new ArgumentNullException(nameof(benchmark));
-            Examples = examples;            
+            Examples = examples;
+
             MinimumFeasibleExamples = minimumFeasibleExamples;
             MaximumFeasiblesExamples = maximumFeasiblesExamples;
             

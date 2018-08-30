@@ -1,4 +1,5 @@
-﻿using Spartacus.Common.Extensions;
+﻿using System;
+using Spartacus.Common.Extensions;
 using Spartacus.Common.Types;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,24 @@ namespace Spartacus.Common.Constraints
             }
 
             return ComparisonKind.Verify(leftSide, Constant);
+        }
+
+        public override string ToString()
+        {
+            var str = "";
+            foreach (var modificator in Modificators)
+            {
+                if (Math.Abs(modificator.Value.Shift) > 0.01)
+                {
+                    str += $" + ({modificator.Value.Weight} * {modificator.Key.Symbol} + {modificator.Value.Shift})";
+                }
+                else
+                {
+                    str += $" + {modificator.Value.Weight} * {modificator.Key.Symbol}";
+                }
+            }
+
+            return $"{str.Substring(3)} {ComparisonKind.GetDescription()} {Constant}";
         }
     }
 }

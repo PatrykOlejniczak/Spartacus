@@ -1,4 +1,5 @@
 ﻿using Spartacus.Benchmarks.Defined;
+using System.Linq;
 using Xunit;
 
 namespace Spartacus.UnitTests
@@ -21,6 +22,8 @@ namespace Spartacus.UnitTests
             var benchmark = new Cube(dimension, 2.7, elements);
 
             Assert.Equal(constraint, benchmark.Constraints.Count);
+            Assert.DoesNotContain(benchmark.Constraints, v => v.Modificators.Count != 1);
+            Assert.Equal(elements, benchmark.Constraints.GroupBy(v => v.GroupId).Count());
         }
     }
 }

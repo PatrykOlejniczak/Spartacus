@@ -33,6 +33,8 @@ namespace Spartacus.UnitTests
         {
             var benchmark = new Simplex(dimension, 2.7);
 
+            var cst = benchmark.Constraints[0].ToString();
+
             Assert.Equal(constraint, benchmark.Constraints.Count);
         }
     }

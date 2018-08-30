@@ -43,14 +43,14 @@ namespace Spartacus.Generator
         private bool IsCorrect(Example proposition, int generated)
         {
             if (proposition.ExampleType == ExampleType.Infeasible
-                && generated < parameters.MinimumFeasibleExamples)
+                    && generated < parameters.MinimumFeasibleExamples)
             {
                 return false;
             }
 
             if (proposition.ExampleType == ExampleType.Feasible
-                && parameters.MaximumFeasiblesExamples.HasValue
-                && generated >= parameters.MaximumFeasiblesExamples)
+                    && parameters.MaximumFeasiblesExamples.HasValue
+                    && generated >= parameters.MaximumFeasiblesExamples)
             {
                 return false;
             }
