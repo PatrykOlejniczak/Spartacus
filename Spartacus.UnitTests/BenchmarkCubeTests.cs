@@ -1,5 +1,5 @@
-﻿using Spartacus.Benchmarks.Defined;
-using System.Linq;
+﻿using System.Linq;
+using Spartacus.Benchmarks.Defined;
 using Xunit;
 
 namespace Spartacus.UnitTests
