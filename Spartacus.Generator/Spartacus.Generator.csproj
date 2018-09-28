@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>Spartacus.Generator</PackageId>
+    <Authors>Patryk Olejniczak</Authors>
+    <Product>Spartacus.Generator</Product>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <RepositoryUrl>https://github.com/PatrykOlejniczak/Spartacus</RepositoryUrl>
+    <PackageTags>generator</PackageTags>
+    <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
