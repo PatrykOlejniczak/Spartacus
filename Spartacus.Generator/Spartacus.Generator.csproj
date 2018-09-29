@@ -4,11 +4,14 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Spartacus.Generator</PackageId>
     <Authors>Patryk Olejniczak</Authors>
-    <Product>Spartacus.Generator</Product>
+    <Product>Spartacus</Product>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/PatrykOlejniczak/Spartacus</RepositoryUrl>
-    <PackageTags>generator</PackageTags>
+    <PackageTags>generator dataset-generation benchmark machine-learning linear-programming mathematical-modeling mathematical-programming constraint-programming constraints data-science</PackageTags>
     <NeutralLanguage>en</NeutralLanguage>
+    <PackageProjectUrl>https://github.com/PatrykOlejniczak/Spartacus</PackageProjectUrl>
+    <PackageLicenseUrl />
+    <Description>Fast &amp; Easy to use library to generate data sets according to given constraints (mathematican programming models).</Description>
   </PropertyGroup>
 
   <ItemGroup>
