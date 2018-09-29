@@ -1,1 +1,1 @@
-dotnet build %~dp0..\Spartacus\Spartacus.csproj -c Release
+dotnet build %~dp0..\Spartacus.sln -c Release

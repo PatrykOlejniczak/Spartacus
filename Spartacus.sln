@@ -26,6 +26,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{F2C9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.CustomTerm", "Sample.CustomTerm\Sample.CustomTerm.csproj", "{005AACC5-303A-4914-BA65-9F3529B35BF4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "configuration", "configuration", "{DCC01B59-93AF-4E68-A896-EC489406A601}"
+	ProjectSection(SolutionItems) = preProject
+		configuration\azure-pipelines.yml = configuration\azure-pipelines.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
