@@ -15,9 +15,9 @@ namespace Spartacus.Generator
         public int? MaximumFeasiblesExamples { get; }
 
         public List<ITerm> Terms { get; }
-        public IRandomizer Randomizer { get; }
+        public IRandomNumberGenerator RandomNumberGenerator { get; }
 
-        public GenerateParameter(Benchmark benchmark, int examples, int? minimumFeasibleExamples = null, int? maximumFeasiblesExamples = null, List<ITerm> terms = null, IRandomizer randomizer = null)
+        public GenerateParameter(Benchmark benchmark, int examples, int? minimumFeasibleExamples = null, int? maximumFeasiblesExamples = null, List<ITerm> terms = null, IRandomNumberGenerator randomNumberGenerator = null)
         {
             if (examples <= 0)
             {
@@ -52,7 +52,7 @@ namespace Spartacus.Generator
             MaximumFeasiblesExamples = maximumFeasiblesExamples;
             
             Terms = terms ?? new List<ITerm>();
-            Randomizer = randomizer ?? new MersenneTwisterWrapper();
+            RandomNumberGenerator = randomNumberGenerator ?? new RandomWrapper();
         }
     }
 }

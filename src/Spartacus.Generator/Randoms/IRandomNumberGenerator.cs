@@ -1,6 +1,6 @@
 ﻿namespace Spartacus.Generator.Randoms
 {
-    public interface IRandomizer
+    public interface IRandomNumberGenerator
     {
         double NextDouble(double min, double max);
     }

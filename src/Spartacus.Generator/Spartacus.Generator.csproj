@@ -12,11 +12,11 @@
     <PackageProjectUrl>https://github.com/PatrykOlejniczak/Spartacus</PackageProjectUrl>
     <PackageLicenseUrl />
     <Description>Fast &amp; Easy to use library to generate data sets according to given constraints (mathematican programming models).</Description>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="EPPlus" Version="4.5.2.1" />
-    <PackageReference Include="MersenneTwister" Version="1.0.5" />
   </ItemGroup>
 
   <ItemGroup>

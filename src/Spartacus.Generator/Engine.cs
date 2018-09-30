@@ -23,7 +23,7 @@ namespace Spartacus.Generator
 
                 foreach (var schema in parameters.Benchmark.VariableSchemas)
                 {
-                    exampleVariables.Add(new Variable(schema, parameters.Randomizer.NextDouble(schema.MinValue, schema.MaxValue)));
+                    exampleVariables.Add(new Variable(schema, parameters.RandomNumberGenerator.NextDouble(schema.MinValue, schema.MaxValue)));
                 }
 
                 var proposition = new Example(exampleVariables);

@@ -2,13 +2,13 @@
 
 namespace Spartacus.Generator.Randoms
 {
-    public class MersenneTwisterWrapper : IRandomizer
+    public class RandomWrapper : IRandomNumberGenerator
     {
         private readonly Random random;
 
-        public MersenneTwisterWrapper(int seed = 0)
+        public RandomWrapper(int seed = 0)
         {
-            random = MersenneTwister.Randoms.Create(seed);
+            random = new Random(seed);
         }
 
         public double NextDouble(double min, double max)

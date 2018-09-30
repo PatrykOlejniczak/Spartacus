@@ -11,6 +11,7 @@
     <RepositoryUrl>https://github.com/PatrykOlejniczak/Spartacus</RepositoryUrl>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageTags>generator dataset-generation benchmark machine-learning linear-programming mathematical-modeling mathematical-programming constraint-programming constraints data-science</PackageTags>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
 </Project>
