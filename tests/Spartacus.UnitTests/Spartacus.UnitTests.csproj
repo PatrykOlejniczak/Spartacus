@@ -13,7 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Spartacus.Generator\Spartacus.Generator.csproj" />
+    <ProjectReference Include="..\..\src\Spartacus.Benchmarks\Spartacus.Benchmarks.csproj" />
+    <ProjectReference Include="..\..\src\Spartacus.Common\Spartacus.Common.csproj" />
+    <ProjectReference Include="..\..\src\Spartacus.Generator\Spartacus.Generator.csproj" />
   </ItemGroup>
 
 </Project>

@@ -3,33 +3,32 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spartacus.Generator", "Spartacus.Generator\Spartacus.Generator.csproj", "{77C08C13-AD50-4B67-8D1E-26311E4A48BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spartacus.Generator", "src\Spartacus.Generator\Spartacus.Generator.csproj", "{77C08C13-AD50-4B67-8D1E-26311E4A48BA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spartacus.Benchmarks", "Spartacus.Benchmarks\Spartacus.Benchmarks.csproj", "{4D46BC7F-EAD4-4D44-B703-2644C6159CBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spartacus.Benchmarks", "src\Spartacus.Benchmarks\Spartacus.Benchmarks.csproj", "{4D46BC7F-EAD4-4D44-B703-2644C6159CBA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spartacus.Common", "Spartacus.Common\Spartacus.Common.csproj", "{CFF15CBA-E634-49C6-AB8C-F3D8C44EED96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spartacus.Common", "src\Spartacus.Common\Spartacus.Common.csproj", "{CFF15CBA-E634-49C6-AB8C-F3D8C44EED96}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spartacus", "Spartacus\Spartacus.csproj", "{60AB2C0C-DBFB-4E8F-B211-10B76764C2DC}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spartacus.UnitTests", "Spartacus.UnitTests\Spartacus.UnitTests.csproj", "{F203D481-CF80-470A-99E0-E1D985DF10FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spartacus.UnitTests", "tests\Spartacus.UnitTests\Spartacus.UnitTests.csproj", "{F203D481-CF80-470A-99E0-E1D985DF10FC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{B7139A60-85AF-40F1-B8E3-6F1F42BCB25B}"
 	ProjectSection(SolutionItems) = preProject
 		scripts\build.cmd = scripts\build.cmd
 		scripts\run_tests.cmd = scripts\run_tests.cmd
-		scripts\samples_ball.bat = scripts\samples_ball.bat
-		scripts\samples_cube.bat = scripts\samples_cube.bat
-		scripts\samples_simplex.bat = scripts\samples_simplex.bat
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{F2C9307E-7A0F-42E1-AAEE-AA619C15EFA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.CustomTerm", "Sample.CustomTerm\Sample.CustomTerm.csproj", "{005AACC5-303A-4914-BA65-9F3529B35BF4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.CustomTerm", "samples\Sample.CustomTerm\Sample.CustomTerm.csproj", "{005AACC5-303A-4914-BA65-9F3529B35BF4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "configuration", "configuration", "{DCC01B59-93AF-4E68-A896-EC489406A601}"
 	ProjectSection(SolutionItems) = preProject
 		configuration\azure-pipelines.yml = configuration\azure-pipelines.yml
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3C6BF856-C737-4B54-A7A7-316E3BA5A9A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{61DB45C3-B1B8-473B-A3A4-2DEFC97CD3DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,10 +48,6 @@ Global
 		{CFF15CBA-E634-49C6-AB8C-F3D8C44EED96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFF15CBA-E634-49C6-AB8C-F3D8C44EED96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFF15CBA-E634-49C6-AB8C-F3D8C44EED96}.Release|Any CPU.Build.0 = Release|Any CPU
-		{60AB2C0C-DBFB-4E8F-B211-10B76764C2DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{60AB2C0C-DBFB-4E8F-B211-10B76764C2DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{60AB2C0C-DBFB-4E8F-B211-10B76764C2DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{60AB2C0C-DBFB-4E8F-B211-10B76764C2DC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F203D481-CF80-470A-99E0-E1D985DF10FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F203D481-CF80-470A-99E0-E1D985DF10FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F203D481-CF80-470A-99E0-E1D985DF10FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -66,6 +61,10 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{77C08C13-AD50-4B67-8D1E-26311E4A48BA} = {61DB45C3-B1B8-473B-A3A4-2DEFC97CD3DF}
+		{4D46BC7F-EAD4-4D44-B703-2644C6159CBA} = {61DB45C3-B1B8-473B-A3A4-2DEFC97CD3DF}
+		{CFF15CBA-E634-49C6-AB8C-F3D8C44EED96} = {61DB45C3-B1B8-473B-A3A4-2DEFC97CD3DF}
+		{F203D481-CF80-470A-99E0-E1D985DF10FC} = {3C6BF856-C737-4B54-A7A7-316E3BA5A9A0}
 		{005AACC5-303A-4914-BA65-9F3529B35BF4} = {F2C9307E-7A0F-42E1-AAEE-AA619C15EFA9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
