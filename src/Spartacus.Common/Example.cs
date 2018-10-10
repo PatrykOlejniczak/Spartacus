@@ -25,6 +25,9 @@ namespace Spartacus.Common
 
         public void Validate(IEnumerable<BaseConstraint> constraints)
         {
+            if (constraints.IsNullOrEmpty())
+                return;
+
             ExampleType = ExampleType.Infeasible;
 
             var groups = constraints.GroupBy(constraint => constraint.GroupId);

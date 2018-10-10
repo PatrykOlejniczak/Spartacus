@@ -36,10 +36,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -48,6 +45,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Spartacus.Benchmarks\Spartacus.Benchmarks.csproj">
+      <Project>{4D46BC7F-EAD4-4D44-B703-2644C6159CBA}</Project>
+      <Name>Spartacus.Benchmarks</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Spartacus.Common\Spartacus.Common.csproj">
+      <Project>{CFF15CBA-E634-49C6-AB8C-F3D8C44EED96}</Project>
+      <Name>Spartacus.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Spartacus.Generator\Spartacus.Generator.csproj">
+      <Project>{77C08C13-AD50-4B67-8D1E-26311E4A48BA}</Project>
+      <Name>Spartacus.Generator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sample.Common\Sample.Common.csproj">
+      <Project>{6128A7D1-14BF-4CB1-B559-CA576967D007}</Project>
+      <Name>Sample.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
