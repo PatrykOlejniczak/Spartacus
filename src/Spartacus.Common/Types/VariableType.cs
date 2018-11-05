@@ -4,6 +4,7 @@
     {
         Basic,
         Linear,
-        Quadratic
+        Quadratic,
+        Custom
     }
 }

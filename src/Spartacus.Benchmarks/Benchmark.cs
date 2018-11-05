@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Spartacus.Benchmarks
 {
-    public class Benchmark
+    public abstract class Benchmark
     {
         public string Name { get; }
 

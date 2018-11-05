@@ -6,7 +6,7 @@ namespace Spartacus.Generator
 {
     public class Engine
     {
-        private readonly GenerateParameter parameters;        
+        private readonly GenerateParameter parameters;
 
         public Engine(GenerateParameter parameters)
         {
