@@ -1,7 +1,7 @@
 # Spartcus
 
 Spartacus program to generate datasets according to given constraints. 
-Output sets in the form of spreadsheets can be used with machine learning algorithms (mostly mathematican programming models). Points are drawn using the [MersenneTwister](https://github.com/akiotakahashi/MersenneTwister) algorithm. The project is written using .Net Core and .Net Standard.
+Output sets in the form of spreadsheets can be used with machine learning algorithms (mostly mathematican programming models). The project is written using .Net Core and .Net Standard.
 
 ## Sample output
 The sets are in the form of a list of points in the N-dimensional space (X1-XN) together with a column representing the result (Y) that defines whether the point meets the restrictions.
@@ -85,7 +85,6 @@ Table: Parameters only for Ball
 Run [build.cmd](scripts/build.cmd). 
 
 ### Samples
-Visualization for datasets generated from samples: [samples_cube.bat](scripts/samples_cube.bat), [samples_ball.bat](scripts/samples_ball.bat), [samples_simplex.bat](scripts/samples_simplex.bat).
 
 ![](/docs/images/sample_definition.JPG)
 
@@ -107,7 +106,3 @@ Visualization for datasets generated from samples: [samples_cube.bat](scripts/sa
 
 ## Contribution
 Feel free to make pull request and add something or just create issue with question / suggestion for improvement / report bug.
-
-
-## Future plans
-Add posibility to easy define custom benchmarks and custom extensions.
