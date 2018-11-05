@@ -10,7 +10,9 @@ using Spartacus.Common.Types;
 namespace Sample.CustomTerm
 {
     /// <summary>
-    /// asdas <see cref="ITerm"/>
+    /// Sample shows how to use custom Term on an example we add term
+    /// which extend example with an additional variable representing all of other./>.
+    /// For this purpose is should be add class with implement <see cref="ITerm"/>.
     /// </summary>
     public class Program
     {
