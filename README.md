@@ -3,6 +3,8 @@
 Spartacus program to generate datasets according to given constraints. 
 Output sets in the form of spreadsheets can be used with machine learning algorithms (mostly mathematican programming models). The project is written using .Net Core and .Net Standard.
 
+[![Build Status](https://dev.azure.com/patrykolejniczak/Spartacus/_apis/build/status/PatrykOlejniczak.Spartacus?branchName=master)](https://dev.azure.com/patrykolejniczak/Spartacus/_build/latest?definitionId=1?branchName=master)
+
 ## Sample output
 The sets are in the form of a list of points in the N-dimensional space (X1-XN) together with a column representing the result (Y) that defines whether the point meets the restrictions.
 
