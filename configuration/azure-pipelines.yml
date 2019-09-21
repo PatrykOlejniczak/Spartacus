@@ -16,12 +16,15 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@0
+  inputs:
+    versionSpec: '>=4.3.0'
+    checkLatest: true
 
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
 
-- task: VSBuild@1
+- task: VSBuild@2
   inputs:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
