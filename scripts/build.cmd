@@ -1,1 +1,0 @@
-dotnet build %~dp0..\Spartacus.sln -c Release

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2002
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29324.140
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spartacus.Generator", "src\Spartacus.Generator\Spartacus.Generator.csproj", "{77C08C13-AD50-4B67-8D1E-26311E4A48BA}"
 EndProject
@@ -13,8 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spartacus.UnitTests", "test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{B7139A60-85AF-40F1-B8E3-6F1F42BCB25B}"
 	ProjectSection(SolutionItems) = preProject
-		scripts\build.cmd = scripts\build.cmd
-		scripts\run_tests.cmd = scripts\run_tests.cmd
+		scripts\build.ps1 = scripts\build.ps1
+		scripts\clear.ps1 = scripts\clear.ps1
+		scripts\run_tests.ps1 = scripts\run_tests.ps1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{F2C9307E-7A0F-42E1-AAEE-AA619C15EFA9}"
@@ -32,7 +33,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{61DB45C3-B1B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.CustomRng", "samples\Sample.CustomRng\Sample.CustomRng.csproj", "{4985C717-AB61-4CD5-B2CD-672F68C97066}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Common", "samples\Sample.Common\Sample.Common.csproj", "{6128A7D1-14BF-4CB1-B559-CA576967D007}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Common", "samples\Sample.Common\Sample.Common.csproj", "{6128A7D1-14BF-4CB1-B559-CA576967D007}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

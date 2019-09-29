@@ -12,7 +12,7 @@
     <PackageProjectUrl>https://github.com/PatrykOlejniczak/Spartacus</PackageProjectUrl>
     <PackageLicenseUrl />
     <Description>Fast &amp; Easy to use library to generate data sets according to given constraints (mathematican programming models).</Description>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
