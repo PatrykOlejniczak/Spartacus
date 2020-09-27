@@ -5,7 +5,7 @@
 
 schedules:
 - cron: "0 0 1 * *"
-  displayName: Daily midnight build
+  displayName: Montly midnight build
   branches:
     include:
     - master
